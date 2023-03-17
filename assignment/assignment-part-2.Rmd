@@ -57,22 +57,22 @@ There are broad classes of recipe steps that you might find useful for the data 
 
 ## Step 0: Warm-up
 
-**Question 1:** What model and engine did you select to use?
+**Question 11:** What model and engine did you select to use?
 
-**Answer 1:**
+**Answer 11:**
 
-**Question 2:** Provide a high level description of the modeling approach
+**Question 12:** Provide a high level description of the modeling approach
 
-**Answer 2:**
+**Answer 12:**
 
 
-**Question 3:** Does the model require any special pre-processing of data. If so describe the steps needed.
+**Question 13:** Does the model require any special pre-processing of data. If so describe the steps needed.
 
-**Answer 3:**
+**Answer 13:**
 
-**Question 4:** List any hyper-parameters that can be tuned
+**Question 14:** List any hyper-parameters that can be tuned
 
-**Answer 4:**
+**Answer 14:**
 
 ## Step 1: Obtain data
 
@@ -105,9 +105,9 @@ spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 
 ### Split data into training/testing sets
 
-**Question 5:** Provide code for splitting data
+**Question 15:** Provide code for splitting data
 
-**Answer 5:**
+**Answer 15:**
 
 ```{r}
 
@@ -118,9 +118,9 @@ spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 
 This step is only required if you are using a model and engine that has parameters that can be tuned.
 
-**Question 6:** Provide code for splitting data. If your model does not require parameter tuning, then state that as your answer rather than providing the code.
+**Question 16:** Provide code for splitting data. If your model does not require parameter tuning, then state that as your answer rather than providing the code.
 
-**Answer 6:**
+**Answer 16:**
 
 ```{r}
 
@@ -129,9 +129,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ### Feature engineering using a recipe
 
-**Question 7:** Provide code that defines the recipe for feature engineering. Be sure to follow the recommendations for your selected engine. 
+**Question 17:** Provide code that defines the recipe for feature engineering. Be sure to follow the recommendations for your selected engine. 
 
-**Answer 7:**
+**Answer 17:**
 
 ```{r}
 
@@ -143,9 +143,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ### Define model type and mode
 
-**Question 8:** Provide code that defines your model (model type + engine).
+**Question 18:** Provide code that defines your model (model type + engine).
 
-**Answer 8:**
+**Answer 18:**
 
 ```{r}
 
@@ -154,9 +154,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ### Define workflow
 
-**Question 9:** Provide code that defines the workflow
+**Question 19:** Provide code that defines the workflow
 
-**Answer 9:**
+**Answer 19:**
 
 ```{r}
 
@@ -167,9 +167,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ### Estimate best hyper-parameters using tuning
 
-**Question 10:** Provide code that tunes the hyper-parameters of your model.  If your model+engine does not require tuning, then state that as your answer.
+**Question 20:** Provide code that tunes the hyper-parameters of your model.  If your model+engine does not require tuning, then state that as your answer.
 
-**Answer 10:**
+**Answer 20:**
 
 ```{r}
 
@@ -178,9 +178,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ### Update workflow with best hyper-parameters
 
-**Question 11:** Provide code that updates the workflow with the best hyper-parameters. If your model+engine does not require tuning, then state that as your answer.
+**Question 21:** Provide code that updates the workflow with the best hyper-parameters. If your model+engine does not require tuning, then state that as your answer.
 
-**Answer 11:**
+**Answer 21:**
 
 ```{r}
 
@@ -189,9 +189,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ## Step 5: Fit to all training data
 
-**Question 12:** Provide code that fits your model to the training data. Use the best hyper-parameter if you tuned them.
+**Question 22:** Provide code that fits your model to the training data. Use the best hyper-parameter if you tuned them.
 
-**Answer 12:**
+**Answer 22:**
 
 ```{r}
 
@@ -200,9 +200,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ## Step 6: Predict Test Data
 
-**Question 13:** Provide code that predicts the test data
+**Question 23:** Provide code that predicts the test data
 
-**Answer 13:**
+**Answer 23:**
 
 ```{r}
 
@@ -211,9 +211,9 @@ This step is only required if you are using a model and engine that has paramete
 
 ## Step 7: Evaluate model
 
-**Question 14:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with rmse and r2 is shown in your knitted document.
+**Question 24:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with rmse and r2 is shown in your knitted document.
 
-**Answer 14:**
+**Answer 24:**
 
 ```{r}
 
@@ -235,17 +235,17 @@ submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
 ```
 
 
-**Question 15:** Provide code to predict the new data
+**Question 25:** Provide code to predict the new data
 
-**Answer 15:**
+**Answer 25:**
 
-**Question 16:** Use `write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to write your submissions to a csv.
+**Question 26:** Use `write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to write your submissions to a csv.
 
-**Answer 16:**
+**Answer 26:**
 
-**Question 17:** Upload `neon_biomass_submission.csv` to Canvas.
+**Question 27:** Upload `neon_biomass_submission.csv` to Canvas.
 
-**Answer 17:**
+**Answer 27:**
 
 ## Knitting and committing
 

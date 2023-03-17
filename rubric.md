@@ -1,22 +1,21 @@
-# Lake Ice Phenology: Detailed Rubric
+# Machine Learning: Detailed Rubric
 
-*NOT UPDATED FOR MODULE YET*
+## Module weight: 50 pts
 
-## Module weight: 35 pts
-
-- 2 pts per question for Question 1-10 (total of 20 pts)
+- 1 pts per question for Question 1-10 (total of 10 pts) (located in `assignment-part-1.Rmd`)
     - **0pts**: no code or answer provided
+    - **0.5 pt**: Code provided and includes at least one correct tidyverse function but is not complete AND/OR (if text answer) response present but limited in depth of answer
+    - **1 pt**: Correct provide provided AND/OR insightful text answer provided that correct describes patterns or addresses question.
+    
+- 2 pts per question for Questions 11 - 26 (total of 26 pts) (located in `assignment-part-2.Rmd`)
+    - **0 pts**: no code or answer provided
     - **1 pt**: Code provided and includes at least one correct tidyverse function but is not complete AND/OR (if text answer) response present but limited in depth of answer
     - **2 pt**: Correct provide provided AND/OR insightful text answer provided that correct describes patterns or addresses question.
     
-- 5 pts per question for Questions 11 & 12 (total of 10 pts)
-    - **0pts**: no code or answer provided
-    - **1 pt**: Code provided and includes at least one correct tidyverse function but is not complete AND/OR (if text answer) response present but limited in depth of answer
-    - **2 pt**: Code, text, and plots include functions that were introduced in the module but the scientific analysis is not valid.
-    - **3 pt**: Code, text, and plots provides valid scientific analysis of observed trends but limited or incorrect interpretation
-    - **4 pt**: Text provides scientific analysis of observed trends and reflects on implications or hypotheses for those patterns and code uses multiple skills covered in the module
-    - **5 pt**: Code, text, and plots provides an analysis that clearly uses the skills and concepts introduced in the module. Highly insightful analysis that goes beyond the questions provided in the template.
-
+- 3 pts per question for Question 27 (located in `assignment-part-2.Rmd`)
+    - **0 pts**: no csv submitted
+    - **3 pt**: csv submitted.
+    
 - 3 pts for RMarkdown
     - **0pts**: no .md or plots commited. no changes evident on the Rmarkdown file or formatting in Rmarkdown incorrect (e.g. code outside code blocks, text inside code blocks, etc)
     - **1pts**: evidence of knitting, commiting, and pushing changes to Rmarkdown but knit to an html, pdf, doc, or other not .md output. OR knit only once and .md is totally out of sync with the .Rmd changes.
