@@ -1,0 +1,207 @@
+---
+title: "Machine learning steps"
+author: "Quinn Thomas"
+date: "2023-03-11"
+output: html_document
+---
+
+## Obtain data
+
+
+
+## Pre-process data
+
+Split data: divide data into the train and test sets
+
+Recipes: Modify predictors/features/covariates for analysis
+
+  - Modify correctly formatted for a particular model. In particular, linear regression requires groups to be dummy variables. For example, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
+  - Removing highly correlated predictors
+  - Rescaling predictor (e.g., converting to 0 mean and 1 standard deviation)
+  - transforming predictors (e.g., log)
+
+## Specify model and workflow
+
+  - Define model type: linear regression, regression tree, neutral net
+  - Define model engine: particular R package (`lm`, `ranger`, etc.)
+  - Define model model: regression or classification
+  - Define workflow: combine recipe and model definition
+
+### Train model
+
+  - Tune hyper-parameters: hyper-parameters are configuration settings the govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameter within the model that are learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) could be directly provided by you or could be tuned.  The tuning process involves repeatedly fitting the model using different values of the hyper-parameter and using the hyper-parameter values that yield the best fit to the data. Importantly: not all ML methods have hyper-parameter (e.g., linear regression using the `lm` engine does not have hyper-parameters)
+  - Fit model (using best hyper-parameter if they are tuned).  The model is fit to the training data.
+
+### Predict
+
+  - Predict testing data
+  
+### Evaluate models
+
+  - Use the approach metrics 
+  
+### Deploy model
+
+  - Predict new data
+  
+## Example: Predicting biomass in NEON data
+
+```{r message=FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+```
+
+### Obtain data
+
+```{r}
+biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
+```
+
+```{r}
+biomass_data <- biomass_data |> 
+  select(plotID, nlcdClass, plot_kgCm2)
+```
+
+### Pre-process data
+
+#### Split data into training/testing sets 
+Split data
+why 0.8
+why strata
+
+```{r}
+split <- initial_split(biomass_data, prop = 0.80, strata = nlcdClass)
+```
+
+```{r}
+split
+```
+
+```{r}
+train_data <- training(split)
+test_data <- testing(split)
+```
+
+```{r}
+train_data
+```
+
+#### Feature engineering using a recipe
+ - requires starting dataset that is used to provide the columns (it isn't used for fitting)
+ - a formula with the dependent variable and the predictors.  If `.` is used as the predictors, that means use all columns other than the dependent variable.
+ - Steps that modify the data
+
+```{r}
+biomass_recipe <- biomass_data |> 
+  recipe(plot_kgCm2 ~ . ) |> 
+  step_rm(plotID) |>
+  step_other(nlcdClass) |>
+  step_dummy(nlcdClass)
+```
+
+```{r}
+biomass_recipe
+```
+
+### Specify model and workflow
+
+This creates the model object.  In this example, we are using `linear_reg` with the mode of `regression` (as opposed to `classification`).  Set mode for a linear regression is actually not necessary because it only allows regressions.  The engine is `lm` because we are using the standard R function `lm`.  There are a ton of other functions for linear regression modeling that we could use.  They would be specifed as a different engine.
+
+```{r}
+linear_mod <- 
+  linear_reg(mode = "regression") |> 
+  set_engine("lm")
+```
+
+```{r}
+linear_mod 
+```
+
+We now combine the model and the recipe together to make a workflow that can be used to fit the training and testing data.  `workflow()` initiates the workflow and add_model and add_recipe add those components to the workflow.
+
+```{r}
+biomass_wflow <-
+  workflow() %>%
+  add_model(linear_mod) %>%
+  add_recipe(biomass_recipe)
+```
+
+You can see that the workflow object has all the components together
+
+```{r}
+biomass_wflow
+```
+
+### Train model on Training Data
+
+We will use the workflow object to train the model.  We need to provide the workflow object and the dataset to the fit function to fit (i.e. train the model)
+
+```{r}
+biomass_fit <- biomass_wflow |> 
+  fit(data = train_data)
+```
+
+You can see that the fit object is the workflow object + the results of the model fitting
+
+```{r}
+biomass_fit
+```
+
+### Predict Test Data
+
+```{r}
+predictions <- predict(biomass_fit, test_data)
+```
+
+```{r}
+predictions
+```
+
+```{r}
+pred_test <- bind_cols(test_data, predictions)
+```
+
+```{r}
+pred_test
+```
+
+### Evaluate model
+
+```{r}
+multi_metric <- metric_set(rmse, rsq, mae)
+pred_test |> 
+multi_metric(truth = plot_kgCm2, estimate = .pred)
+```
+
+### Deploy model
+
+Create a variable with your last name
+
+```{r}
+team_name <- "ADD YOUR LAST NAME"
+```
+
+```{r}
+submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+
+new_predictions <- predict(biomass_fit, submit_data)
+
+submit_predicted <- bind_cols(submit_data, new_predictions) |>
+  mutate(team_name = team_name) |>
+  select(plotID, team_name, .pred)
+
+write_csv(submit_predicted, file = "predictions.csv")
+```
+
+# Assignment
+
+Your assignment is divided into two R markdown files that use data that you have already seen in the previous modules.
+
+1) `assignment-part-1.Rmd` challenges you to translate the linear regression that you did in the lake ice module follow the tidymodel machine learning format.
+
+2) `assignment-part-2.Rmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
+
+
+
+

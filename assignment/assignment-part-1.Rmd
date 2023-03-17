@@ -1,0 +1,152 @@
+---
+title: "Assignment Part 1: Lake Ice"
+author: "Quinn Thomas"
+date: "2023-03-15"
+output: html_document
+---
+
+```{r message=FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+```
+
+## Objective
+
+Apply the tidymodel approach above to the ice-off data from the second module. Your goal is to translate the linear regression from the the lake ice module into the tidymodels machine learning framework.  
+
+## Tips
+
+- You should be using the same model and engine as in the ma
+- Since the data are already processed you won't have any steps in your recipe.  Your recipe will just have a formula in the `recipe()`
+
+## Step 1: Obtain data
+
+First, copy data from ice lake phenology model into your data subdirectory in this module.  
+
+**Question 1:** Provide code for reading in data and filtering the data to only be Lake Sunapee. 
+
+**Answer 1:**
+
+```{r}
+
+
+```
+
+## Step 2: Pre-process data
+
+### Split data into training/testing sets
+
+**Question 2:** Provide code for splitting data
+
+**Answer 2:**
+
+```{r}
+
+
+```
+
+
+#### Feature engineering using a recipe
+
+**Question 3:** Provide code that defines the recipe for feature engineering
+
+**Answer 3:**
+
+```{r}
+
+
+```
+
+
+### Specify model and workflow
+
+#### Define model type and mode
+
+**Question 4:** Provide code that defines the model
+
+**Answer 4:**
+
+```{r}
+
+
+```
+
+#### Define workflow
+
+**Question 5:** Provide code that defines the workflow
+
+**Answer 5:**
+
+```{r}
+
+
+```
+
+### Train model on Training Data
+
+**Question 6:** Provide code that trains the model
+
+**Answer 6:**
+
+```{r}
+
+
+```
+
+
+### Predict Test Data
+
+**Question 7:** Provide code that predicts the test data
+
+**Answer 7:**
+
+```{r}
+
+
+```
+
+### Evaluate model
+
+**Question 8:** Provide code calculates the rmse and r2 for the test data
+
+**Answer 8:**
+
+```{r}
+
+
+```
+
+### Deploy model
+
+#### Obtain new data
+
+```{r}
+new_data <- tibble(year = seq(2024, 2050, by = 1))
+```
+
+#### Make new prediction
+
+**Question 9:**
+
+Provide code that predicts the ice-off day of year for the new data
+
+**Answer 9:**
+
+```{r}
+
+
+```
+
+**Question 10:**
+
+Plot predictions of the new data
+
+**Answer 10:**
+
+```{r}
+
+
+```
+
+

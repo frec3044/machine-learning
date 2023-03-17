@@ -1,0 +1,208 @@
+---
+title: "Assignment Part 2: new ML model"
+author: "Quinn Thomas"
+date: "2023-03-15"
+output: github_document
+---
+
+```{r message=FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+```
+
+## Objective
+
+## Background
+
+[Alternative modeling approaches](https://parsnip.tidymodels.org/reference/index.html#models)
+
+- [Single layer neural network](https://parsnip.tidymodels.org/reference/mlp.html)
+- [Random forest](https://parsnip.tidymodels.org/reference/rand_forest.html)
+- [Automatic Machine Learning](https://parsnip.tidymodels.org/reference/auto_ml.html)
+- [Boosted trees](https://parsnip.tidymodels.org/reference/boost_tree.html)
+- [Linear Regression](https://parsnip.tidymodels.org/reference/linear_reg.html)
+
+[Different recipes steps for feature engineering](https://recipes.tidymodels.org/reference/index.html)
+
+- [Imputation (fill NA values)](https://recipes.tidymodels.org/reference/index.html#step-functions-imputation)
+- [Transform variables](https://recipes.tidymodels.org/reference/index.html#step-functions-individual-transformations)
+- [Add dummy variables](https://recipes.tidymodels.org/reference/index.html#step-functions-dummy-variables-and-encodings)
+- [Create variable interaction](https://recipes.tidymodels.org/reference/index.html#step-functions-interactions)
+- [Normalize variables (e.g., center on 0 and scale sd)](https://recipes.tidymodels.org/reference/index.html#step-functions-normalization)
+- [Filter rows and select columns](https://recipes.tidymodels.org/reference/index.html#step-functions-filters)
+- [Operate on rows](https://recipes.tidymodels.org/reference/index.html#step-functions-row-operations)
+
+## Step 0: Warm-up
+
+**Question 1:** What model and engine did you select to use?
+
+**Answer 1:**
+
+**Question 2:** Provide a high level description of the modeling approach
+
+**Answer 2:**
+
+
+**Question 3:** Does the model require any special pre-processing of data. If so describe the steps needed.
+
+**Answer 3:**
+
+**Question 4:** List any hyper-parameters that can be tuned
+
+**Answer 4:**
+
+## Step 1: Obtain data
+
+```{r}
+biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
+```
+
+Add column metadata here
+
+## Pre-process data
+
+### Split data into training/testing sets
+
+**Question 5:** Provide code for splitting data
+
+**Answer 5:**
+
+```{r}
+
+
+```
+
+### Split training data into folds
+
+This step is only required if you are using a model and engine that has parameters that can be tuned.
+
+**Question 6:** Provide code for splitting data. If your model does not require parameter tuning, then state that as your answer rather than providing the code.
+
+**Answer 6:**
+
+```{r}
+
+
+```
+
+### Feature engineering using a recipe
+
+**Question 7:** Provide code that defines the recipe for feature engineering. Be sure to follow the recommendations for your selected engine. 
+
+**Answer 7:**
+
+```{r}
+
+
+```
+
+
+## Step 2: Specify model and workflow
+
+### Define model type and mode
+
+**Question 8:** Provide code that defines your model (model type + engine).
+
+**Answer 8:**
+
+```{r}
+
+
+```
+
+### Define workflow
+
+**Question 9:** Provide code that defines the workflow
+
+**Answer 9:**
+
+```{r}
+
+
+```
+
+## Step 3: Train model on Training Data
+
+### Estimate best hyper-parameters using tuning
+
+**Question 10:** Provide code that tunes the hyper-parameters of your model.  If your model+engine does not require tuning, then state that as your answer.
+
+**Answer 10:**
+
+```{r}
+
+
+```
+
+### Update workflow with best hyper-parameters
+
+**Question 11:** Provide code that updates the workflow with the best hyper-parameters. If your model+engine does not require tuning, then state that as your answer.
+
+**Answer 11:**
+
+```{r}
+
+
+```
+
+## Step 4: Fit to all training data
+
+**Question 12:** Provide code that fits your model to the training data. Use the best hyper-parameter if you tuned them.
+
+**Answer 12:**
+
+```{r}
+
+
+```
+
+## Step 5: Predict Test Data
+
+**Question 13:** Provide code that predicts the test data
+
+**Answer 13:**
+
+```{r}
+
+
+```
+
+## Step 5: Evaluate model
+
+**Question 14:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with rmse and r2 is shown in your knitted document.
+
+**Answer 14:**
+
+```{r}
+
+
+```
+
+## Step 6: Deploy model
+
+Use your trained model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate rmse for your predictions. Therefore you need to predict the biomass and upload your csv to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
+
+Be sure to change the `name` to be your last name.
+
+```{r}
+name <- "ADD YOUR LAST NAME"
+```
+
+```{r}
+submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+```
+
+
+**Question 15:** Provide code to predict the new data
+
+**Answer 15:**
+
+**Question 16:** Use `write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to write your submissions to a csv and upload `neon_biomass_submission.csv` to Canvas.
+
+**Answer 16:**
+
+# Knitting and committing
+
+Remember to Knit your document as a `github_document` and comment+push to GitHub your code, knitted document, and any files in the `figure-gfm` subdirectory that was created when you knitted the document.
+

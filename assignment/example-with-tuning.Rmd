@@ -1,0 +1,223 @@
+---
+title: "Full ML workflow"
+author: "Quinn Thomas"
+date: "2023-03-15"
+output: html_document
+---
+
+```{r message=FALSE}
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+```
+
+### Obtain data
+
+In this example, we are going to use the same NEON biomass data with an additional predictor (`lat`)
+
+```{r}
+biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE) |> 
+  select(plotID, nlcdClass, plot_kgCm2, lat)
+```
+
+### Pre-process data
+
+#### Split data into training/testing sets
+
+```{r}
+split <- initial_split(biomass_data, prop = 0.80, strata = nlcdClass)
+
+train_data <- training(split)
+test_data <- testing(split)
+
+```
+
+#### Split training data into folds
+
+- what is a fold and why is it needed
+- default is 10
+
+```{r}
+folds <- vfold_cv(train_data)
+```
+
+```{r}
+folds
+```
+
+#### Feature engineering using a recipe
+
+```{r}
+biomass_recipe <- biomass_data |> 
+  recipe(plot_kgCm2 ~ . ) |> 
+  step_rm(plotID) |>
+  step_other(nlcdClass) |>
+  step_dummy(nlcdClass)
+```
+
+[Here are the different recipe steps used above](https://recipes.tidymodels.org/reference/index.html)
+
+- [Add dummy variables](https://recipes.tidymodels.org/reference/index.html#step-functions-dummy-variables-and-encodings)
+- [Filter rows and select columns](https://recipes.tidymodels.org/reference/index.html#step-functions-filters)
+
+### Specify model and workflow
+
+#### Model 
+
+We are going to use the random forest model to predict biomass. The function [`rand_forest`](https://parsnip.tidymodels.org/reference/rand_forest.html) defines the model.  
+
+These are the arguments for the `rand_forest` model
+
+```
+rand_forest(
+  mode = "unknown",
+  engine = "ranger",
+  mtry = NULL,
+  trees = NULL,
+  min_n = NULL
+)
+```
+
+We will use the ranger engine [The ranger engine](https://parsnip.tidymodels.org/reference/details_rand_forest_ranger.html)
+
+`ranger::ranger()` fits a model that creates a large number of decision trees, each independent of the others. The final prediction uses all predictions from the individual trees and combines them.
+
+For this engine, there are multiple modes: classification and regression
+
+[Tuning Parameters](https://parsnip.tidymodels.org/reference/details_rand_forest_ranger.html#tuning-parameters)
+
+This model has 3 tuning hyper-parameters:
+
+- `mtry`: Randomly Selected Predictors (type: integer, default: see below). mtry depends on the number of columns. The default in ranger::ranger() is floor(sqrt(ncol(x))).
+- `trees`: Trees (type: integer, default: 500L)
+- `min_n`: Minimal Node Size (type: integer, default: see below). min_n depends on the mode. For regression, a value of 5 is the default. For classification, a value of 10 is used.
+
+We will tune two of them in our model (`mtry` and `min_n`).  Setting the hyper-parameter equal to `tune()` is a placeholder that says we plan to tune it.
+
+```{r}
+rand_for_mod <- 
+  rand_forest(mtry = tune(), min_n = tune(), trees = 1000) %>%
+  set_engine("ranger", num.threads = parallel::detectCores()) |> 
+  set_mode("regression")
+```
+
+
+Now look at the [preprocessing requirements](https://parsnip.tidymodels.org/reference/details_rand_forest_ranger.html#preprocessing-requirements) for the range engine.  
+
+```
+This engine does not require any special encoding of the predictors. Categorical predictors can be partitioned into groups of factor levels (e.g. {a, c} vs {b, d}) when splitting at a node. Dummy variables are not required for this model.
+```
+
+Do we need to modify our recipe above?
+
+#### Workflow
+
+```{r}
+biomass_wflow <- 
+  workflow() %>%
+  add_model(rand_for_mod) %>%
+  add_recipe(biomass_recipe)
+```  
+
+### Fit model
+
+An important rule when training a model is that you never use the training data to evaluate a model.  This is because ML models can be so good that they "learn" the data.  Therefore the error on the training data will, by definition" be low.  Evaluate is always done on data that was not used in the model training.  We have two ways that we are doing this
+
+1) We have divided the data into a training and testing set with 20% of the data in the testing set.  The model will never be fit to the testing set, it will only be used to predict this set.
+
+2) We have divided the training set into 10 folds where each fold has an analysis and axxessment set.  Each fold is randomly different that the other folds with different rows of the training assigned to the analysis and assessment set.  We can then train the model on the analysis set in each fold separately and evaluate using the assessment set.  We can then average the model performance from the 10 different assessments to get an idea of model performance even before we look at the testing data. We will use the folds to tune the model hyperparameters.
+
+In summary: 
+
+- all data is divided into training and testing sets. 
+- The training set has 10 different grouping of training data.  Each group has an analysis and accessment set.
+
+#### Estimate best hyper-parameters using tuning
+
+The tune_grid function will train the model+recipe defined in the workflow using a set of parameters on a subset of the training data (analysis set).  It then calculates a metric that describes how well the model with that set of hyper-parameter predicts the the "assessment" set.  The analysis and assessment set differs for each "fold" because a fold is the training divided into the two sets. 
+
+Setting the grid to 25 creates 25 sets of the two different hyper-parameters (5 x 5) that we are tuning.  It uses a sensible range of hyper-parameters to develop the grid.  
+
+We will be using the metric root-mean-squeared error to measure how good the model fit is (`metrics = metric_set(rmse)`)
+
+`control = control_grid(save_pred = TRUE)` just says to save the predictions for each fold.
+
+
+```{r}
+biomass_resample_fit <- 
+  biomass_wflow |>  
+  tune_grid(resamples = folds,
+            grid = 25,
+            control = control_grid(save_pred = TRUE),
+            metrics = metric_set(rmse))
+```
+
+In total the random forest model was be run 25 * 10 times (25 different hyperparameter sets x 10 different folds of the training data).
+
+In the table below that is sorted so that best hyperparameter set (lowest RMSE) is at the top.  You can see the value for `mtry` and `min_n` that were used in the training and mean RMSE (`mean`) across all 10 "folds" (`n` is the number of folds).  
+
+```{r}
+biomass_resample_fit %>% 
+  collect_metrics() |> 
+  arrange(mean)
+```
+
+The `select_best()` function helps extract the hyperparameters with the best metric (`rmse`).  
+
+```{r}
+best_hyperparameters <- biomass_resample_fit %>%
+  select_best("rmse")
+```
+
+#### Update workflow with best hyper-parameters
+
+Our workflow (model + recipe) needs to know the hyper-parameters to use to fit the model.  The `finalize_workflow` function updates the workflow to contain the best hyper-parameters.
+
+```{r}
+final_workflow <- 
+  biomass_wflow %>% 
+  finalize_workflow(best_hyperparameters)
+```
+
+#### Fit to all training data
+
+We use the same approach as we have used before to train the model using the **full** training data (does not use the 10 folds).
+
+```{r}
+biomass_fit <- final_workflow |> 
+  fit(data = train_data)
+```
+
+### Predict testing data
+
+```{r}
+predictions <- predict(biomass_fit, test_data)
+```
+
+```{r}
+pred_test <- bind_cols(test_data, predictions)
+```
+
+### Evaluate model
+
+```{r}
+multi_metric <- metric_set(rmse, rsq, mae)
+
+pred_test |> 
+multi_metric(truth = plot_kgCm2, estimate = .pred)
+```
+
+### Deploy model
+
+```{r}
+team_name <- "ADD YOUR LAST NAME"
+```
+
+```{r}
+submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+
+new_predictions <- predict(biomass_fit, submit_data)
+
+submit_predicted <- bind_cols(submit_data, new_predictions) |>
+  mutate(team_name = team_name)
+```
