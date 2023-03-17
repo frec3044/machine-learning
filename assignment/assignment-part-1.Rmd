@@ -2,7 +2,7 @@
 title: "Assignment Part 1: Lake Ice"
 author: "Quinn Thomas"
 date: "2023-03-15"
-output: html_document
+output: github_document
 ---
 
 ```{r message=FALSE}
@@ -17,7 +17,7 @@ Apply the tidymodel approach above to the ice-off data from the second module. Y
 
 ## Tips
 
-- You should be using the same model and engine as in the ma
+- You should be using the same model and engine as in `machine-learning-101.Rmd`
 - Since the data are already processed you won't have any steps in your recipe.  Your recipe will just have a formula in the `recipe()`
 
 ## Step 1: Obtain data
@@ -47,7 +47,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 ```
 
 
-#### Feature engineering using a recipe
+### Feature engineering using a recipe
 
 **Question 3:** Provide code that defines the recipe for feature engineering
 
@@ -59,9 +59,9 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 ```
 
 
-### Specify model and workflow
+## Step 3: Specify model and workflow
 
-#### Define model type and mode
+### Define model type and mode
 
 **Question 4:** Provide code that defines the model
 
@@ -72,7 +72,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ```
 
-#### Define workflow
+### Define workflow
 
 **Question 5:** Provide code that defines the workflow
 
@@ -83,7 +83,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ```
 
-### Train model on Training Data
+## Step 4: Train model on Training Data
 
 **Question 6:** Provide code that trains the model
 
@@ -95,7 +95,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 ```
 
 
-### Predict Test Data
+## Step 5: Predict Test Data
 
 **Question 7:** Provide code that predicts the test data
 
@@ -106,7 +106,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ```
 
-### Evaluate model
+## Step 6: Evaluate model
 
 **Question 8:** Provide code calculates the rmse and r2 for the test data
 
@@ -117,19 +117,17 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ```
 
-### Deploy model
+## Step 7:  Deploy model
 
-#### Obtain new data
+### Obtain new data
 
 ```{r}
 new_data <- tibble(year = seq(2024, 2050, by = 1))
 ```
 
-#### Make new prediction
+### Make new prediction
 
-**Question 9:**
-
-Provide code that predicts the ice-off day of year for the new data
+**Question 9:** Provide code that predicts the ice-off day of year for the new data
 
 **Answer 9:**
 
@@ -138,9 +136,7 @@ Provide code that predicts the ice-off day of year for the new data
 
 ```
 
-**Question 10:**
-
-Plot predictions of the new data
+**Question 10:** Plot the predictions of the new data (year vs. doy for the new data)
 
 **Answer 10:**
 
@@ -149,4 +145,7 @@ Plot predictions of the new data
 
 ```
 
+## Knitting and committing
+
+Remember to Knit your document as a `github_document` and comment+push to GitHub your code, knitted document, and any files in the `figure-gfm` subdirectory that was created when you knitted the document.
 

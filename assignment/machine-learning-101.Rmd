@@ -2,49 +2,51 @@
 title: "Machine learning steps"
 author: "Quinn Thomas"
 date: "2023-03-11"
-output: html_document
+output: github_document
 ---
 
-## Obtain data
+## Step 1: Obtain data
 
+Read in data to memory.  In the course we have accessed csv, excel, and database forms located in the github repo, on websites, and through an API.
 
+## Step 2: Pre-process data
 
-## Pre-process data
+Split data: divide data into the training and test sets. [WHY]
 
-Split data: divide data into the train and test sets
+Recipes: Modify predictors/features/covariates/independent variables for analysis
 
-Recipes: Modify predictors/features/covariates for analysis
-
-  - Modify correctly formatted for a particular model. In particular, linear regression requires groups to be dummy variables. For example, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
+  - Modify so that correctly formatted for a particular model. For example, a linear regression requires groups to be dummy variables. Therefore, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
   - Removing highly correlated predictors
   - Rescaling predictor (e.g., converting to 0 mean and 1 standard deviation)
   - transforming predictors (e.g., log)
 
-## Specify model and workflow
+## Step 3: Specify model and workflow
 
-  - Define model type: linear regression, regression tree, neutral net
+  - Define model type: linear regression, regression tree, neutral net, etc.
   - Define model engine: particular R package (`lm`, `ranger`, etc.)
-  - Define model model: regression or classification
+  - Define model mode: regression or classification
   - Define workflow: combine recipe and model definition
 
-### Train model
+## Step 4: Train model
 
   - Tune hyper-parameters: hyper-parameters are configuration settings the govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameter within the model that are learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) could be directly provided by you or could be tuned.  The tuning process involves repeatedly fitting the model using different values of the hyper-parameter and using the hyper-parameter values that yield the best fit to the data. Importantly: not all ML methods have hyper-parameter (e.g., linear regression using the `lm` engine does not have hyper-parameters)
   - Fit model (using best hyper-parameter if they are tuned).  The model is fit to the training data.
 
-### Predict
+## Step 5: Predict
 
-  - Predict testing data
+  - Predict testing data (MORE TEXT)
   
-### Evaluate models
+## Step 6: Evaluate model
 
-  - Use the approach metrics 
+  - Use the appropiate metrics (MORE TEXT)
   
-### Deploy model
+## Step 7: Deploy model
 
-  - Predict new data
+  - Predict new data (MORE TEXT)
   
-## Example: Predicting biomass in NEON data
+# Application: Predicting biomass in NEON data
+
+[ADD MOTIVATING TEXT]
 
 ```{r message=FALSE}
 library(tidyverse)
@@ -52,7 +54,9 @@ library(tidymodels)
 tidymodels_prefer()
 ```
 
-### Obtain data
+## Step 1: Obtain data
+
+The data are from the National Ecological Observatory Network, the DayMet project (meterology data), and NASA's MODIS satellite.  They have been combined to provide the woody vegetation carbon stocks for each NEON plot and the associated meterology, land-use classification, and normalized vegetation index (from MODIS).
 
 ```{r}
 biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
@@ -63,9 +67,9 @@ biomass_data <- biomass_data |>
   select(plotID, nlcdClass, plot_kgCm2)
 ```
 
-### Pre-process data
+## Step 2:  Pre-process data
 
-#### Split data into training/testing sets 
+### Split data into training/testing sets 
 Split data
 why 0.8
 why strata
@@ -87,7 +91,8 @@ test_data <- testing(split)
 train_data
 ```
 
-#### Feature engineering using a recipe
+### Feature engineering using a recipe
+
  - requires starting dataset that is used to provide the columns (it isn't used for fitting)
  - a formula with the dependent variable and the predictors.  If `.` is used as the predictors, that means use all columns other than the dependent variable.
  - Steps that modify the data
@@ -104,7 +109,7 @@ biomass_recipe <- biomass_data |>
 biomass_recipe
 ```
 
-### Specify model and workflow
+## Step 3: Specify model, engine, and workflow
 
 This creates the model object.  In this example, we are using `linear_reg` with the mode of `regression` (as opposed to `classification`).  Set mode for a linear regression is actually not necessary because it only allows regressions.  The engine is `lm` because we are using the standard R function `lm`.  There are a ton of other functions for linear regression modeling that we could use.  They would be specifed as a different engine.
 
@@ -133,7 +138,7 @@ You can see that the workflow object has all the components together
 biomass_wflow
 ```
 
-### Train model on Training Data
+## Step 4: Train model on Training Data
 
 We will use the workflow object to train the model.  We need to provide the workflow object and the dataset to the fit function to fit (i.e. train the model)
 
@@ -148,7 +153,7 @@ You can see that the fit object is the workflow object + the results of the mode
 biomass_fit
 ```
 
-### Predict Test Data
+## Step 5: Predict Test Data
 
 ```{r}
 predictions <- predict(biomass_fit, test_data)
@@ -166,7 +171,7 @@ pred_test <- bind_cols(test_data, predictions)
 pred_test
 ```
 
-### Evaluate model
+## Step 6: Evaluate model
 
 ```{r}
 multi_metric <- metric_set(rmse, rsq, mae)
@@ -174,7 +179,7 @@ pred_test |>
 multi_metric(truth = plot_kgCm2, estimate = .pred)
 ```
 
-### Deploy model
+## Step 7: Deploy model
 
 Create a variable with your last name
 
