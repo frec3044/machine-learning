@@ -8,7 +8,7 @@ All work for this assignment is in the `assignment` directory. The general rubri
 
 Additionally this repository, and all student repositories, includes most of the special files found here:
 
-### Common files
+## Common files
 
 - `README.md` this file, a general overview of the repository in markdown format.  
 - `lesson.md` a description of the assignment.
