@@ -14,15 +14,15 @@ Read in data to memory.  In the course we have accessed csv, excel, and database
 ### Split data: divide data into the training and test sets. 
 
 - You will use the training set to fit your model and the testing set to evaluate the model performance.
-- We only want to evaluate our model using data that the model has not used yet.  Otherwise we can only say that the model is good at fitting the data that was used to train it.  This is not helpful for understand how it would perform as a tool generate new predictions.
+- We only want to evaluate our model using data that the model has not used yet.  Otherwise we can only say that the model is good at fitting the data that was used to train it.  This is not helpful for understanding how it would perform as a tool generate new predictions.
 - You want most of your data in the training set because machine learning models can be quite "hungry for data" (e.g, next a large dataset to find a good fit).
 - A typical split is 80% training and 20% testing but there isn't a required split. 
 - Data are randomly assigned to the two splits.
-- Your data may have obvious grouping that you want to be equally represented in both the training and testing sets.  For example, if you have cats and dogs as a variable you are using to predict tail length, you may want to be sure that your training set is not randomly full of dogs because than means it may not predict the cats well in the testing set.  You can prevent this by defining the `strata` used when assigning the training and testing sets. 
+- Your data may have obvious groupings that you want to be equally represented in both the training and testing sets.  For example, if you have cats and dogs as a variable you are using to predict tail length, you may want to be sure that your training set is not randomly full of dogs because than means it may not predict the cats well in the testing set.  You can prevent this by defining the `strata` used when assigning the training and testing sets. 
 
 ### Recipes: Modify predictors/features/covariates/independent variables for analysis
 
-  - Modify so that correctly formatted for a particular model. For example, a linear regression requires groups to be dummy variables. Therefore, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
+  - Modify data set so that variables are correctly formatted for a particular model. For example, a linear regression requires groups to be dummy variables. Therefore, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
   - Removing highly correlated predictors
   - Rescaling predictor (e.g., converting to 0 mean and 1 standard deviation)
   - transforming predictors (e.g., log)
@@ -55,7 +55,7 @@ A workflow combines the model and recipe in a single "object" that you can use f
   
 ## Step 7: Deploy model
 
-  - One of main points of using machine learning is to develop a tool that can be used use new predictors to predict data that wasn't involved in the training and testing.  These are data that have all the columns necessary to make predictions but lack data in the column you are trying to predict.  
+  - One of main points of using machine learning is to develop a tool that can be used with new predictors to predict data that wasn't involved in the training and testing.  These are data that have all the columns necessary to make predictions but lack data in the column you are trying to predict.  
   - This step is simple because it involve using the `predict()` function with the same trained model but with new data.
   
 # Application: Predicting biomass in NEON data
@@ -70,13 +70,13 @@ tidymodels_prefer()
 
 ## Step 1: Obtain data
 
-The data are from the National Ecological Observatory Network, the DayMet project (meterology data), and NASA's MODIS satellite.  They have been combined to provide the woody vegetation carbon stocks for each NEON plot and the associated meterology, land-use classification, and normalized vegetation index (from MODIS).
+The data are from the National Ecological Observatory Network, the DayMet project (meteorology data), and NASA's MODIS satellite.  They have been combined to provide the woody vegetation carbon stocks for each NEON plot and the associated meteorology, land-use classification, and normalized vegetation index (from MODIS).
 
 ```{r}
 biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
 ```
 
-We are only going to be using three colums.  `plotID` is the identifier for the plot, `nlcdClass` is the land-cover classification of plot, and `plot_kgCm2` is the vegetation carbon stock of plot (kgC/m2).  We are using to be using `nlcdClass` to predict `plot_kgCm2` for each  `plotID`.
+In this example analysis, we are only going to be using three columns.  `plotID` is the identifier for the plot, `nlcdClass` is the land-cover classification of plot, and `plot_kgCm2` is the vegetation carbon stock of the plot (kgC/m2).  We are using to be using `nlcdClass` to predict `plot_kgCm2` for each `plotID`.
 
 ```{r}
 biomass_data <- biomass_data |> 
@@ -87,7 +87,7 @@ biomass_data <- biomass_data |>
 
 ### Split data into training/testing sets 
 
-We are going to split the data into training and testing sets using the `initial_split` function.  `prop = 0.80` says to use 80% of the data in the training set.  Since we want the training and test sets to have representation of all the types of `nlcdClass`, we include it as a `strata`.
+We are going to split the data into training and testing sets using the `initial_split` function.  `prop = 0.80` says to use 80% of the data in the training set. Since we want the training and test sets to have representation of all the types of `nlcdClass`, we include it as a `strata`.
 
 
 ```{r}
@@ -115,11 +115,11 @@ train_data
 
 ### Feature engineering using a recipe
 
- - requires starting dataset that is used to provide the columns (it isn't used for fitting)
+ - requires starting with dataset that is used to provide the columns.
  - a formula with the dependent variable and the predictors.  If `.` is used as the predictors, that means use all columns other than the dependent variable.
  - Steps that modify the data
  
- We used the following steps:
+ We will use the following steps:
  - `step_rm` because we don't want to use the identifier of the plot in the fitting.
  - `step_other` because there are rare land-use classes that we want to lump together.  This creates an "other" class.
  - `step_dummy` because linear regression requires classes to be dummy variables. For example, a linear regression requires groups to be dummy variables. Therefore, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
@@ -129,6 +129,8 @@ train_data
 - [Add dummy variables](https://recipes.tidymodels.org/reference/index.html#step-functions-dummy-variables-and-encodings)
 - [Filter rows and select columns](https://recipes.tidymodels.org/reference/index.html#step-functions-filters)
 
+Here is our recipe:
+
 ```{r}
 biomass_recipe <- train_data |> 
   recipe(plot_kgCm2 ~ . ) |> 
@@ -137,7 +139,7 @@ biomass_recipe <- train_data |>
   step_dummy(nlcdClass)
 ```
 
-The recipe should show the steps that will be performed when applying the recipe.  Importantly, these steps have not yet been applied, we just have a recipe of what to do.
+The recipe should show the steps that will be performed when applying the recipe. Importantly, these steps have not yet been applied, we just have a recipe of what to do.
 
 ```{r}
 biomass_recipe
@@ -145,7 +147,9 @@ biomass_recipe
 
 ## Step 3: Specify model, engine, and workflow
 
-We need to create the model and engine that we will use.  In this example, we are using `linear_reg` with the mode of `regression` (as opposed to `classification`).  Set mode for a linear regression is actually not necessary because it only allows regressions.  The engine is `lm` because we are using the standard R function `lm`.  There are a ton of other functions for linear regression modeling that we could use.  They would be specified as a different engine.
+We need to create the model and engine that we will use. In this example, we are using `linear_reg` with the mode of `regression` (as opposed to `classification`). Setting the mode for a linear regression is actually not necessary because it only allows regressions but it is included here for completeness. 
+
+The engine is `lm` because we are using the standard R function `lm`.  There are a ton of other functions for linear regression modeling that we could use.  They would be specified as a different engine.
 
 ```{r}
 linear_mod <- 
@@ -159,7 +163,7 @@ You will see the model, mode, and engine in the model object
 linear_mod 
 ```
 
-We now combine the model and the recipe together to make a workflow that can be used to fit the training and testing data. `workflow()` initiates the workflow and add_model and add_recipe add those components to the workflow.  Importantly, these the workflow has not yet been applied, we just have description of what to do.
+We now combine the model and the recipe together to make a workflow that can be used to fit the training and testing data. `workflow()` initiates the workflow and `add_model` and `add_recipe` add those components to the workflow.  Importantly, the workflow has not yet been applied, we just have description of what to do.
 
 ```{r}
 biomass_wflow <-
@@ -176,7 +180,7 @@ biomass_wflow
 
 ## Step 4: Train model on Training Data
 
-We will use the workflow object to train the model.  We need to provide the workflow object and the dataset to the fit function to fit (i.e. train the model)
+We will use the workflow object to train the model. We need to provide the workflow object and the dataset to the fit function to fit (i.e., train the model)
 
 ```{r}
 biomass_fit <- biomass_wflow |> 

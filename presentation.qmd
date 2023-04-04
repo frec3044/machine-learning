@@ -8,82 +8,70 @@ editor: visual
 
 You have already done machine learning in the class
 
-$~$ 
+$~$
 
 Linear regression from the lake ice model
 
 $~$
 
-```
+```         
 fit <- lm(doy ~ year, data = sunapee)
 ```
 
 ## Prediction vs. understanding
 
-- Modeling for **understanding**
-  - Parameters and model matter
-  - e.g., is the parameter that relates temperature to growth different from zero?
+-   Modeling for **understanding**
+    -   Parameters and model matter
+    -   e.g., is the parameter that relates temperature to growth different from zero?
+-   Modeling for **prediction**
+    -   Quality of prediction matters
+    -   Machine learning!
 
-- Modeling for **prediction**
-  - Quality of prediction matters
-  - Machine learning!
-  
 ## Machine learning
 
-> Machine learning is a field of inquiry devoted to understanding and building methods that "learn" – that is, methods that leverage data to improve performance on some set of tasks.  - Wikipedia
+> Machine learning is a field of inquiry devoted to understanding and building methods that "learn" -- that is, methods that leverage data to improve performance on some set of tasks. - Wikipedia
 
 ![](img/black-box.png)
 
 ## Broad classes of ML
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
+### Supervised
 
-### Supervised 
+-   *Labels* are available for each set of predictors (class or continuous numeric)
 
-- *Labels* are available for each set of predictors (class or continuous numeric)
-
-- Goal is to predict the *labels*
-
+-   Goal is to predict the *labels*
 :::
 
 ::: {.column width="50%"}
-
 ### Unsupervised
 
-- *Labels* are NOT available for each set of predictors. 
+-   *Labels* are NOT available for each set of predictors.
 
-- Goal is to use predictors to create groups
-
+-   Goal is to use predictors to create groups
 :::
-
-::::
+:::
 
 ## Broad classes of ML
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
+### Supervised
 
-### Supervised 
-
-- Examples: 
-  - Images are labeled by a human (criminal vs. non-criminal)
-  - Values are provided for a continuous variable (i.e., stream nitrate)
-
+-   Examples:
+    -   Images are labeled by a human (criminal vs. non-criminal)
+    -   Values are provided for a continuous variable (i.e., stream nitrate)
 :::
 
 ::: {.column width="50%"}
-
 ### Unsupervised
 
-- Examples:
-  - Recommendation systems - if you like a movie, ML can find movies like it to recommend
-  - What are the characteristics of different groups that buy a produce?
+-   Examples:
+    -   Recommendation systems - if you like a movie, ML can find movies like it to recommend
+    -   What are the characteristics of different groups that buy a product?
 :::
-
-::::
+:::
 
 ## ML Flow chart
 
@@ -95,41 +83,41 @@ https://www.researchgate.net/publication/347633181_Detection_of_Smoking_in_Indoo
 
 ## Big picture steps in ML
 
-1. Define question (what are you predicting...is it ethical?)
-2. Obtain data
-3. Define the type of ML (supervised vs. unsupervised,  regression vs. classification).
-4. Identify method that will be used (this influences how data will be pre-processed)
-5. Pre-process data (also called feature engineering)
-6. Define specific approach for applying the model (i.e., which R package)
+1.  Define question (what are you predicting...is it ethical?)
+2.  Obtain data
+3.  Define the type of ML (supervised vs. unsupervised, regression vs. classification).
+4.  Identify method that will be used (this influences how data will be pre-processed)
+5.  Pre-process data (also called feature engineering)
+6.  Define specific approach for applying the model (i.e., which R package)
 
 ## Big picture steps in ML
 
-7. Define data splits (training vs. testing)
-8. Fit (train) model to training data
-9. Evaluate (validate) the model with testing data (neeed to evaluate with testing data because ML learns the training data)
+7.  Define data splits (training vs. testing)
+8.  Fit (train) model to training data
+9.  Evaluate (validate) the model with testing data (need to evaluate with testing data because ML learns the training data)
 
 ## Big picture steps in ML
 
-10. Deploy model (predict new data).  
+10. Deploy model (predict new data).
 
 ## Lake Ice module as ML
 
-1. Define question: **what is the lake ice in 2030?**
-2. Obtain data: **read_csv**
-3. Define the type of ML: **supervised regression**
-4. Identify method that will be used: **linear regression**
-5. Pre-process data: **I already converted the date to DOY**
-6. Define specific approach for applying the model: `lm`
+1.  Define question: **what is the lake ice in 2030?**
+2.  Obtain data: **read_csv**
+3.  Define the type of ML: **supervised regression**
+4.  Identify method that will be used: **linear regression**
+5.  Pre-process data: **I already converted the date to DOY**
+6.  Define specific approach for applying the model: `lm`
 
 ## Lake Ice module as ML
 
-7. Define data splits: **we didn't do this**
-8. Fit (train) model to training data: `lm(doy ~ year, data = sunapee)`
-9. Evaluate (validate) the model with testing data: **we didn't do this**
+7.  Define data splits: **we didn't do this**
+8.  Fit (train) model to training data: `lm(doy ~ year, data = sunapee)`
+9.  Evaluate (validate) the model with testing data: **we didn't do this**
 
 ## Lake Ice module as ML
 
-10. Deploy model (predict new data): **predicted for year 2030**  
+10. Deploy model (predict new data): **predicted for year 2030**
 
 ## Tidyverse take on ML
 
@@ -152,7 +140,9 @@ https://www.tidymodels.org
 ## Tidymodels
 
 <p align="center">
-<img src="img/tidymodels-functions.png"  width="700" height="500">
+
+<img src="img/tidymodels-functions.png" width="700" height="500"/>
+
 </p>
 
 ::: aside
@@ -161,15 +151,17 @@ https://rpubs.com/chenx/tidymodels_tutorial
 
 ## Overview of module
 
-### Datasets 
-- Forest carbon from NEON (from prior module)
-- Lake Ice (from prior module)
+### Datasets
+
+-   Forest carbon from NEON (from prior module)
+-   Lake Ice (from prior module)
 
 ### Plan
-- Instruction in tidymodels applied to predicting carbon
-- Assignment part 1: apply to predicting lake ice
-- Instruction in tuning ML models
-- Assignment part 2: apply predicting to forest carbon
+
+-   Instruction in tidymodels applied to predicting carbon
+-   Assignment part 1: apply to predicting lake ice
+-   Instruction in tuning ML models
+-   Assignment part 2: apply predicting to forest carbon
 
 ## Focal dataset
 
@@ -182,7 +174,7 @@ biomass <- readr::read_csv("assignment/data/neon_biomass.csv", show_col_types = 
 colnames(biomass)
 ```
 
-Number of rows 
+Number of rows
 
 ```{r}
 nrow(biomass)
@@ -192,14 +184,7 @@ nrow(biomass)
 
 ### Predict out-of-sample data
 
-- You have the "predictors" for 48 additional sites
-- I have the carbon stocks
-- You will submit your predictions of these 48 via Canvas
-- I will summerize and compare the results.
-
-
-
-
-  
-
-
+-   You have the "predictors" for 48 additional sites
+-   I have the carbon stocks
+-   You will submit your predictions of these 48 via Canvas
+-   I will summarize and compare the results.

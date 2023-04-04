@@ -1,0 +1,252 @@
+Assignment Part 2: new ML model
+================
+Quinn Thomas
+2023-03-17 09:22:06
+
+``` r
+library(tidyverse)
+library(tidymodels)
+tidymodels_prefer()
+```
+
+## Objective
+
+Using machine learning and tidymodels to predict how much carbon is
+stored in vegetation across the U.S.
+
+## Expections
+
+This assignment requires the following
+
+- You must use more predictors than used in the
+  `machine-learning-101.Rmd` and `example-with-tuning.Rmd`. You do not
+  have to use all predictors. In fact, one of the decisions that you
+  will be making is which predictors you will include.
+
+- You must use a different model and/or engine than used in the
+  `machine-learning-101.Rmd` and `example-with-tuning.Rmd`.
+
+- You must upload your predictions of the new carbon stock data to
+  Canvas as a csv.
+
+### Guidance
+
+You will need to explore the different models/engines that are avialable
+in the tidymodels package. Following the the link below will show the
+list of models that are avialable. Clicking on a model type will show
+the different engines that are avialable to use.
+
+**[Alternative modeling
+approaches](https://parsnip.tidymodels.org/reference/index.html#models)**
+
+Here is a list of models that may be particularly useful for the data in
+this assignment.
+
+- [Single layer neural
+  network](https://parsnip.tidymodels.org/reference/mlp.html)
+- [Random
+  forest](https://parsnip.tidymodels.org/reference/rand_forest.html)
+- [Automatic Machine
+  Learning](https://parsnip.tidymodels.org/reference/auto_ml.html)
+- [Boosted
+  trees](https://parsnip.tidymodels.org/reference/boost_tree.html)
+- [Linear
+  Regression](https://parsnip.tidymodels.org/reference/linear_reg.html)
+
+The documentation of the engine will describe any pre-processessing that
+is required for the data and list the hyperparameters that are avialable
+for tuning. For example
+[here](https://parsnip.tidymodels.org/reference/details_rand_forest_ranger.html)
+is the documentation for the `ranger` engine within the `rand_forest`
+model
+
+Once you start pre-processing your data using a recipe, the following
+link will show the different “steps” that you can use. Clicking on the
+step will show how to use it in a recipe.
+
+**[Different recipes steps for feature
+engineering](https://recipes.tidymodels.org/reference/index.html)**
+
+There are broad classes of recipe steps that you might find useful for
+the data that you are working with in this assignment. You will be not
+be using all the available steps.
+
+- [Imputation (fill NA
+  values)](https://recipes.tidymodels.org/reference/index.html#step-functions-imputation)
+- [Transform
+  variables](https://recipes.tidymodels.org/reference/index.html#step-functions-individual-transformations)
+- [Add dummy
+  variables](https://recipes.tidymodels.org/reference/index.html#step-functions-dummy-variables-and-encodings)
+- [Create variable
+  interaction](https://recipes.tidymodels.org/reference/index.html#step-functions-interactions)
+- [Normalize variables (e.g., center on 0 and scale
+  sd)](https://recipes.tidymodels.org/reference/index.html#step-functions-normalization)
+- [Filter rows and select
+  columns](https://recipes.tidymodels.org/reference/index.html#step-functions-filters)
+- [Operate on
+  rows](https://recipes.tidymodels.org/reference/index.html#step-functions-row-operations)
+
+## Step 0: Warm-up
+
+**Question 1:** What model and engine did you select to use?
+
+**Answer 1:**
+
+**Question 2:** Provide a high level description of the modeling
+approach
+
+**Answer 2:**
+
+**Question 3:** Does the model require any special pre-processing of
+data. If so describe the steps needed.
+
+**Answer 3:**
+
+**Question 4:** List any hyper-parameters that can be tuned
+
+**Answer 4:**
+
+## Step 1: Obtain data
+
+``` r
+biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
+```
+
+    spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+     $ plotID    : chr - identifier of plot
+     $ daylength : num - mean annual daylength (s/day)
+     $ precip    : num - mean annual precipitation (mm)
+     $ range     : num - mean annual daily range in temperature (day max - day min; C)
+     $ tavg      : num - mean annual temperature (C)
+     $ solar     : num - mean annual solar radiation (W/m2)
+     $ tmax      : num - mean annual daily max temperature (C)
+     $ tmin      : num - mean annual daily min temperature (C)
+     $ vpd       : num - mean annual vapor pressure deficient (Pa)
+     $ elevation : num - elevation of plot (meters)
+     $ nlcdClass : chr - land-cover classification of plot
+     $ lat       : num - latitude of plot (degrees W)
+     $ long      : num - longitude of plot (degrees E)
+     $ plotType  : chr - type of plot (tower or distributed)
+     $ ndvi      : num - normalized difference vegetation index of plot from MODIS (unitless)
+     $ siteID    : chr - identifier of site that includes the plot
+     $ plot_kgCm2: num - vegetation carbon stock of plot (kgC/m2)
+
+## Step 2: Pre-process data
+
+### Split data into training/testing sets
+
+**Question 5:** Provide code for splitting data
+
+**Answer 5:**
+
+### Split training data into folds
+
+This step is only required if you are using a model and engine that has
+parameters that can be tuned.
+
+**Question 6:** Provide code for splitting data. If your model does not
+require parameter tuning, then state that as your answer rather than
+providing the code.
+
+**Answer 6:**
+
+### Feature engineering using a recipe
+
+**Question 7:** Provide code that defines the recipe for feature
+engineering. Be sure to follow the recommendations for your selected
+engine.
+
+**Answer 7:**
+
+## Step 3: Specify model and workflow
+
+### Define model type and mode
+
+**Question 8:** Provide code that defines your model (model type +
+engine).
+
+**Answer 8:**
+
+### Define workflow
+
+**Question 9:** Provide code that defines the workflow
+
+**Answer 9:**
+
+## Step 4: Train model on Training Data
+
+### Estimate best hyper-parameters using tuning
+
+**Question 10:** Provide code that tunes the hyper-parameters of your
+model. If your model+engine does not require tuning, then state that as
+your answer.
+
+**Answer 10:**
+
+### Update workflow with best hyper-parameters
+
+**Question 11:** Provide code that updates the workflow with the best
+hyper-parameters. If your model+engine does not require tuning, then
+state that as your answer.
+
+**Answer 11:**
+
+## Step 5: Fit to all training data
+
+**Question 12:** Provide code that fits your model to the training data.
+Use the best hyper-parameter if you tuned them.
+
+**Answer 12:**
+
+## Step 6: Predict Test Data
+
+**Question 13:** Provide code that predicts the test data
+
+**Answer 13:**
+
+## Step 7: Evaluate model
+
+**Question 14:** Provide code calculates the rmse and r2 for the test
+data. Make sure that the table with rmse and r2 is shown in your knitted
+document.
+
+**Answer 14:**
+
+## Step 8: Deploy model
+
+Use your trained model to predict new data. The new data is a data frame
+with all the same columns as the training and testing set above but with
+`NA` values for the biomass. I have the true biomass values and will
+calculate rmse for your predictions. Therefore you need to predict the
+biomass and upload your csv to Canvas and I will download them as a set
+and run the analysis in class to examine the “scores”
+
+Be sure to change the `name` to be your last name.
+
+``` r
+name <- "ADD YOUR LAST NAME"
+```
+
+``` r
+submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+```
+
+**Question 15:** Provide code to predict the new data
+
+**Answer 15:**
+
+**Question 16:** Use
+`write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to
+write your submissions to a csv.
+
+**Answer 16:**
+
+**Question 17:** Upload `neon_biomass_submission.csv` to Canvas.
+
+**Answer 17:**
+
+## Knitting and committing
+
+Remember to Knit your document as a `github_document` and comment+push
+to GitHub your code, knitted document, and any files in the `figure-gfm`
+subdirectory that was created when you knitted the document.
