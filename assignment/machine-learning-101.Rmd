@@ -66,6 +66,7 @@ In the example application, we are going to be using the vegetation carbon stock
 library(tidyverse)
 library(tidymodels)
 tidymodels_prefer()
+set.seed(100) #for random number generation
 ```
 
 ## Step 1: Obtain data
@@ -279,7 +280,7 @@ write_csv(submit_predicted, file = "predictions.csv")
 
 Your assignment is divided into two R markdown files that use data that you have already seen in the previous modules.
 
-1) `assignment-part-1.Rmd` challenges you to translate the linear regression that you did in the lake ice module follow the tidymodel machine learning format.
+1) `assignment-part-1.Rmd` challenges you to translate the linear regression that you did in the lake ice module follow the tidymodel machine learning format presented in this Rmd
 
 2) `assignment-part-2.Rmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
 
