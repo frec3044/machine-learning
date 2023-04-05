@@ -9,6 +9,7 @@ output: github_document
 library(tidyverse)
 library(tidymodels)
 tidymodels_prefer()
+set.seed(100)
 ```
 
 This extends the example in `machine-learning-101.Rmd` to include hyperparameter tuning.

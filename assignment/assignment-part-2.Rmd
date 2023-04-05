@@ -9,6 +9,7 @@ output: github_document
 library(tidyverse)
 library(tidymodels)
 tidymodels_prefer()
+set.seed(100)
 ```
 
 ## Objective
