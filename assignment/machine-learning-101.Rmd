@@ -168,8 +168,8 @@ We now combine the model and the recipe together to make a workflow that can be 
 
 ```{r}
 biomass_wflow <-
-  workflow() %>%
-  add_model(linear_mod) %>%
+  workflow() |> 
+  add_model(linear_mod) |> 
   add_recipe(biomass_recipe)
 ```
 
@@ -228,7 +228,7 @@ We will evaluate the performance of our predictions of the testing data using tw
 multi_metric <- metric_set(rmse, rsq)
 
 metric_table <- pred_test |> 
-multi_metric(truth = plot_kgCm2, estimate = .pred)
+  multi_metric(truth = plot_kgCm2, estimate = .pred)
 ```
 
 The resulting table has the metrics for evaluation
@@ -243,7 +243,8 @@ The final step is to apply your model to predict new data.
 
 Now read in the new data.  
 ```{r}
-submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
+
 submit_data <- submit_data |> 
   select(plotID, nlcdClass, plot_kgCm2)
 ```
