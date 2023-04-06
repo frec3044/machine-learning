@@ -109,7 +109,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ## Step 6: Evaluate model
 
-**Question 8:** Provide code calculates the rmse and r2 for the test data
+**Question 8:** Provide code that calculates the rmse and r2 for the test data
 
 **Answer 8:**
 
