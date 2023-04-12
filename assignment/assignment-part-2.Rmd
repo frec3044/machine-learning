@@ -119,7 +119,7 @@ spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 
 This step is only required if you are using a model and engine that has parameters that can be tuned.
 
-**Question 16:** Provide code for splitting data. If your model does not require parameter tuning, then state that as your answer rather than providing the code.
+**Question 16:** Provide code for splitting data into folds. If your model does not require parameter tuning, then state that as your answer rather than providing the code.
 
 **Answer 16:**
 
@@ -243,6 +243,14 @@ submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
 **Question 26:** Use `write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to write your submissions to a csv.
 
 **Answer 26:**
+
+```{r}
+name <- "ADD YOUR LAST NAME HERE"
+submit_predicted <- bind_cols(submit_data, new_predictions) |>
+  mutate(name = name) |>
+  select(plotID, name, .pred)
+write_csv(submit_predicted, file = paste0(name,"-submission.csv"))
+```
 
 **Question 27:** Upload `neon_biomass_submission.csv` to Canvas.
 

@@ -126,8 +126,8 @@ Do we need to modify our recipe above?
 
 ```{r}
 biomass_wflow <- 
-  workflow() %>%
-  add_model(rand_for_mod) %>%
+  workflow() |> 
+  add_model(rand_for_mod) |> 
   add_recipe(biomass_recipe)
 ```  
 
