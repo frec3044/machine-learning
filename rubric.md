@@ -14,7 +14,8 @@
     
 - 3 pts per question for Question 27 (located in `assignment-part-2.Rmd`)
     - **0 pts**: no csv submitted
-    - **3 pt**: csv submitted.
+    - **1 pts**: csv submitted but with incorrect set of columns
+    - **3 pt**: csv submitted with correct columns
     
 - 3 pts for RMarkdown
     - **0pts**: no .md or plots commited. no changes evident on the Rmarkdown file or formatting in Rmarkdown incorrect (e.g. code outside code blocks, text inside code blocks, etc)

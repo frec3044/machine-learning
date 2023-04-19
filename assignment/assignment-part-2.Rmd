@@ -62,7 +62,7 @@ There are broad classes of recipe steps that you might find useful for the data 
 
 **Answer 11:**
 
-**Question 12:** Provide a high level description of the modeling approach
+**Question 12:** Provide a high level description of the modeling approach you choose in Question 11.
 
 **Answer 12:**
 
@@ -252,7 +252,7 @@ submit_predicted <- bind_cols(submit_data, new_predictions) |>
 write_csv(submit_predicted, file = paste0(name,"-submission.csv"))
 ```
 
-**Question 27:** Upload `neon_biomass_submission.csv` to Canvas.
+**Question 27:** Find your your csv on your computer from Question 26 and upload to Canvas.
 
 **Answer 27:**
 
