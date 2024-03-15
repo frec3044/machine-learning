@@ -1,8 +1,9 @@
 ---
 title: "Assignment Part 1: Lake Ice"
-author: "Quinn Thomas"
-date: "`r Sys.time()`"
-output: github_document
+author: "Add you name"
+format:
+  html:
+    embed-resources: true
 ---
 
 ```{r message=FALSE}
@@ -149,5 +150,5 @@ new_data <- tibble(lake_name = "Sunapee",
 
 ## Knitting and committing
 
-Remember to Knit your document as a `github_document` and comment+push to GitHub your code, knitted document, and any files in the `figure-gfm` subdirectory that was created when you knitted the document.
+Remember to Render your document as a `html` and comment+push to GitHub your code and Rendered html
 

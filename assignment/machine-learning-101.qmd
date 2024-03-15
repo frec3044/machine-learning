@@ -1,8 +1,9 @@
 ---
 title: "Machine learning steps"
 author: "Quinn Thomas"
-date: "2023-03-11"
-output: github_document
+format:
+  html:
+    embed-resources: true
 ---
 
 ## Step 1: Obtain data
@@ -279,11 +280,11 @@ write_csv(submit_predicted, file = "predictions.csv")
 
 # Assignment
 
-Your assignment is divided into two R markdown files that use data that you have already seen in the previous modules.
+Your assignment is divided into two Quarto markdown documents files that use data that you have already seen in the previous modules.
 
-1) `assignment-part-1.Rmd` challenges you to translate the linear regression that you did in the lake ice module follow the tidymodel machine learning format presented in this Rmd
+1) `assignment-part-1.qmd` challenges you to translate the linear regression that you did in the lake ice module follow the tidymodel machine learning format presented in this Rmd
 
-2) `assignment-part-2.Rmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
+2) `assignment-part-2.qmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
 
 
 

@@ -1,8 +1,9 @@
 ---
 title: "Machine learning steps with hyperparameter tuning"
 author: "Quinn Thomas"
-date: "2023-03-15"
-output: github_document
+format:
+  html:
+    embed-resources: true
 ---
 
 ```{r message=FALSE}

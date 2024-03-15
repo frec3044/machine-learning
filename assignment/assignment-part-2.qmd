@@ -1,8 +1,9 @@
 ---
 title: "Assignment Part 2: new ML model"
-author: "Quinn Thomas"
-date: "`r Sys.time()`"
-output: github_document
+author: "Add you name"
+format:
+  html:
+    embed-resources: true
 ---
 
 ```{r message=FALSE}
@@ -28,7 +29,7 @@ This assignment requires the following
   
 ### Guidance
 
-You will need to explore the different models/engines that are avialable in the tidymodels package.  Following the the link below will show the list of models that are avialable.  Clicking on a model type will show the different engines that are avialable to use.  
+You will need to explore the different models/engines that are available in the tidymodels package.  Following the the link below will show the list of models that are available.  Clicking on a model type will show the different engines that are available to use.  
 
 **[Alternative modeling approaches](https://parsnip.tidymodels.org/reference/index.html#models)**
 
@@ -40,7 +41,7 @@ Here is a list of models that may be particularly useful for the data in this as
 - [Boosted trees](https://parsnip.tidymodels.org/reference/boost_tree.html)
 - [Linear Regression](https://parsnip.tidymodels.org/reference/linear_reg.html)
 
-The documentation of the engine will describe any pre-processessing that is required for the data and list the hyperparameters that are avialable for tuning. For example [here](https://parsnip.tidymodels.org/reference/details_rand_forest_ranger.html) is the documentation for the `ranger` engine within the `rand_forest` model
+The documentation of the engine will describe any pre-processesing that is required for the data and list the hyperparameters that are available for tuning. For example [here](https://parsnip.tidymodels.org/reference/details_rand_forest_ranger.html) is the documentation for the `ranger` engine within the `rand_forest` model
 
 Once you start pre-processing your data using a recipe, the following link will show the different "steps" that you can use.  Clicking on the step will show how to use it in a recipe.  
 
@@ -117,7 +118,7 @@ spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 
 ### Split training data into folds
 
-This step is only required if you are using a model and engine that has parameters that can be tuned.
+This step is only required if you are using a model and engine that has hyper-parameters that can be tuned.
 
 **Question 16:** Provide code for splitting data into folds. If your model does not require parameter tuning, then state that as your answer rather than providing the code.
 
@@ -212,7 +213,7 @@ This step is only required if you are using a model and engine that has paramete
 
 ## Step 7: Evaluate model
 
-**Question 24:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with rmse and r2 is shown in your knitted document.
+**Question 24:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with rmse and r2 is shown in your rendered document.
 
 **Answer 24:**
 
@@ -223,7 +224,7 @@ This step is only required if you are using a model and engine that has paramete
 
 ## Step 8: Deploy model
 
-Use your trained model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate rmse for your predictions. Therefore you need to predict the biomass and upload your csv to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
+Use your trained model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your csv to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
 
 Be sure to change the `name` to be your last name.
 
@@ -258,5 +259,5 @@ write_csv(submit_predicted, file = paste0(name,"-submission.csv"))
 
 ## Knitting and committing
 
-Remember to Knit your document as a `github_document` and comment+push to GitHub your code, knitted document, and any files in the `figure-gfm` subdirectory that was created when you knitted the document.
+Remember to Render your document as n `html` and comment+push to GitHub your code and rendered document.
 
