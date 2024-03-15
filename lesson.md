@@ -14,7 +14,7 @@ Machine learning is a widely used tool for predicting environmental data. This m
 
 ## Feedback
 
-<https://github.com/frec-3044/machine-learning-template/issues>
+<https://github.com/frec3044/machine-learning/issues>
 
 ## Questions
 
@@ -32,17 +32,17 @@ Experience with the tidyverse data input and wrangling
 
 Completion of two other modules on GitHub
 
- - [Lake ice phenology](https://github.com/frec-3044/lake-ice-template)
- - [Vegetation carbon](https://github.com/frec-3044/forest-inventory-template)
+ - [Lake ice phenology](https://github.com/frec3044/lake-ice)
+ - [Vegetation carbon](https://github.com/frec3044/land-carbon)
 
 ## Instructions
 
-  - Read and execute `assignment/machine-learning-101.Rmd` in Rstudio
-  - Complete the notebook `assignment/assignment-part-1.Rmd` in RStudio
-  - `knit` + commit output files to GitHub
-  - Read and execute `assignment/example-with-tuning.Rmd` in Rstudio
- - Complete the notebook `assignment/assignment-part-2.Rmd` in RStudio
-   - `knit` + commit output files to GitHub
+  - Read and execute `assignment/machine-learning-101.qmd` in Rstudio
+  - Complete the notebook `assignment/assignment-part-1.qmd` in RStudio
+  - `render` + commit output files to GitHub
+  - Read and execute `assignment/example-with-tuning.qmd` in Rstudio
+ - Complete the notebook `assignment/assignment-part-2.qmd` in RStudio
+   - `render` + commit output files to GitHub
  
 ## Context
 
