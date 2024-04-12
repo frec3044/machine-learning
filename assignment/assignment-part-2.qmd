@@ -23,7 +23,7 @@ This assignment requires the following
 
 - You must use more predictors than used in the `machine-learning-101.Rmd` and `example-with-tuning.Rmd`.  You do not have to use all predictors.  In fact, one of the decisions that you will be making is which predictors you will include.
   
-- You must use a different model and/or engine than used in the `machine-learning-101.Rmd` and `example-with-tuning.Rmd`.
+- You can't use `lm` as an engine (since you have already done this twice)
 
 - You must upload your predictions of the new carbon stock data to Canvas as a csv.
   
@@ -213,7 +213,7 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ## Step 7: Evaluate model
 
-**Question 24:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with rmse and r2 is shown in your rendered document.
+**Question 24:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with `rmse` and `r2` is shown in your rendered document.
 
 **Answer 24:**
 
@@ -259,5 +259,5 @@ write_csv(submit_predicted, file = paste0(name,"-submission.csv"))
 
 ## Knitting and committing
 
-Remember to Render your document as n `html` and comment+push to GitHub your code and rendered document.
+Remember to Render your document as an `html` and comment+push to GitHub your code and rendered document.
 

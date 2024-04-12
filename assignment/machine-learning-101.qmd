@@ -8,25 +8,25 @@ format:
 
 ## Step 1: Obtain data
 
-Read in data to memory.  In the course we have accessed csv, excel, and database forms located in the github repo, on websites, and through an API.
+Read in data to memory.  In the course we have accessed csv, excel, and database forms that were located in a github repo, at a web address, and behind an API.
 
 ## Step 2: Pre-process data
 
 ### Split data: divide data into the training and test sets. 
 
-- You will use the training set to fit your model and the testing set to evaluate the model performance.
-- We only want to evaluate our model using data that the model has not used yet.  Otherwise we can only say that the model is good at fitting the data that was used to train it.  This is not helpful for understanding how it would perform as a tool generate new predictions.
+- You will use the training set to fit (train) your model and the testing set to evaluate the model performance.
+- We only want to evaluate our model using data that was not used in the training of the model.  Otherwise we can only say that the model is good at fitting the data that was used to train it.  This is not helpful for understanding how it would perform as a tool generate new predictions.
 - You want most of your data in the training set because machine learning models can be quite "hungry for data" (e.g, next a large dataset to find a good fit).
 - A typical split is 80% training and 20% testing but there isn't a required split. 
 - Data are randomly assigned to the two splits.
-- Your data may have obvious groupings that you want to be equally represented in both the training and testing sets.  For example, if you have cats and dogs as a variable you are using to predict tail length, you may want to be sure that your training set is not randomly full of dogs because than means it may not predict the cats well in the testing set.  You can prevent this by defining the `strata` used when assigning the training and testing sets. 
+- Your data may have obvious groupings that you want to be equally represented in both the training and testing sets.  For example, if you have cats and dogs as a variable you are using the model to predict tail length as a function of species and height, you may want to be sure that your training set is not randomly full of dogs because than means it may not predict the cats well in the testing set.  You can prevent this by defining the `strata` used when assigning the training and testing sets. 
 
 ### Recipes: Modify predictors/features/covariates/independent variables for analysis
 
-  - Modify data set so that variables are correctly formatted for a particular model. For example, a linear regression requires groups to be dummy variables. Therefore, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
+  - Modify the data set so that variables are correctly formatted for a particular model. For example, a linear regression requires groups to be dummy variables. Therefore, a column called "ecosystem" with two values: "forest" and "grass" would be converted to two columns: ecosystem_forest with a value of 0 or 1 and ecosystem_grass with a value of 0 and 1)
   - Removing highly correlated predictors
-  - Rescaling predictor (e.g., converting to 0 mean and 1 standard deviation)
-  - transforming predictors (e.g., log)
+  - Rescaling predictors (e.g., converting to 0 mean and 1 standard deviation)
+  - transforming predictors using a function like `log()`.
 
 ## Step 3: Specify model and workflow
 
@@ -39,13 +39,13 @@ A workflow combines the model and recipe in a single "object" that you can use f
 
 ## Step 4: Train model
 
-  - Tune hyper-parameters: hyper-parameters are configuration settings the govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameter within the model that are learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) could be directly provided by you or could be tuned.  The tuning process involves repeatedly fitting the model using different values of the hyper-parameter and using the hyper-parameter values that yield the best fit to the data. Importantly: not all ML methods have hyper-parameter (e.g., linear regression using the `lm` engine does not have hyper-parameters).  We don't tune hyperparameters in this example. See `example-with-tuning.Rmd` for an extension of this application that includes hyperparameter tuning.
+  - Tune hyper-parameters: hyper-parameters are configuration settings that govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameter within the model that are learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) could be directly provided by you or could be tuned.  The tuning process involves repeatedly fitting the model using different values of the hyper-parameter and using the hyper-parameter values that yield the best fit to the data. Importantly: not all ML methods have hyper-parameter (e.g., linear regression using the `lm` engine does not have hyper-parameters).  We don't tune hyperparameters in this example. See `example-with-tuning.Rmd` for an extension of this application that includes hyperparameter tuning.
   
   - Fit model (using best hyper-parameter if they are tuned).  The model is fit to the training data.
 
 ## Step 5: Predict
 
-  - Predict testing data using the model that was fit to the training data.  This step is critical because we only want to evaluate our model using data that the model has not used yet.  Otherwise we can only say that the model is good at fitting the data that was used to train it.  This is not helpful for understand how it would perform as a tool generate new predictions. 
+  - Predict testing data using the model that was fit to the training data. This step is critical because we only want to evaluate our model using data that the model has not used yet.
   - Predictions are quite easy using the `predict()` function.
   
 ## Step 6: Evaluate model
@@ -56,17 +56,19 @@ A workflow combines the model and recipe in a single "object" that you can use f
   
 ## Step 7: Deploy model
 
-  - One of main points of using machine learning is to develop a tool that can be used with new predictors to predict data that wasn't involved in the training and testing.  These are data that have all the columns necessary to make predictions but lack data in the column you are trying to predict.  
+  - One of main points of using machine learning is to develop a tool that can be used with new predictors to predict data that wasn't involved in the training and testing.  These are new data have all the columns necessary to make predictions but lack data in the column you are trying to predict.  
   - This step is simple because it involve using the `predict()` function with the same trained model but with new data.
   
 # Application: Predicting biomass in NEON data
 
 In the example application, we are going to be using the vegetation carbon stock data that was used in the carbon stock model. Our goal is to predict the mean carbon stock of each plot in the NEON data.  This will allow us to build a model that could be used to predict carbon stocks at locations other than NEON and potentially provide a prediction tool for land-managers.
 
+You will use the following packages.
+
 ```{r message=FALSE}
 library(tidyverse)
 library(tidymodels)
-tidymodels_prefer()
+tidymodels_prefer() #so that functions in the tidymodels have priority if others have the same name.
 set.seed(100) #for random number generation
 ```
 
@@ -78,7 +80,7 @@ The data are from the National Ecological Observatory Network, the DayMet projec
 biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
 ```
 
-In this example analysis, we are only going to be using three columns.  `plotID` is the identifier for the plot, `nlcdClass` is the land-cover classification of plot, and `plot_kgCm2` is the vegetation carbon stock of the plot (kgC/m2).  We are using to be using `nlcdClass` to predict `plot_kgCm2` for each `plotID`.
+In this example analysis, we are only going to be using three columns. `plotID` is the identifier for the plot, `nlcdClass` is the land-cover classification of plot, and `plot_kgCm2` is the vegetation carbon stock of the plot (kgC/m2). We are using to be using `nlcdClass` to predict `plot_kgCm2` for each `plotID`.
 
 ```{r}
 biomass_data <- biomass_data |> 
@@ -117,8 +119,8 @@ train_data
 
 ### Feature engineering using a recipe
 
- - requires starting with dataset that is used to provide the columns.
- - a formula with the dependent variable and the predictors.  If `.` is used as the predictors, that means use all columns other than the dependent variable.
+ - Requires starting with dataset that is used to provide the columns.
+ - A formula with the dependent variable and the predictors.  If `.` is used as the predictors, that means use all columns other than the dependent variable.
  - Steps that modify the data
  
  We will use the following steps:
@@ -223,7 +225,7 @@ pred_test
 
 ## Step 6: Evaluate model
 
-We will evaluate the performance of our predictions of the testing data using two metrics (`rmse` and `rsq`).  The function `metric_set` defines the set of metric we will be using them.  It creates a function called `multi_metric()` that we will use to calculate the metrics.  We pipe in the predicted test data (`pred_test`) and tell the function that our truth (i.e., observed data) is the `plot_kgCm2` column and the predictions (i.e., `estimate`) is the `.pred` column
+We will evaluate the performance of our predictions of the testing data using two metrics (`rmse` and `rsq`).  The function `metric_set` defines the set of metrics we will be using.  It creates a function called `multi_metric()` that we will use to calculate the metrics.  We pipe in the predicted test data (`pred_test`) and tell the function that our truth (i.e., observed data) is the `plot_kgCm2` column and the predictions (i.e., `estimate`) is the `.pred` column
 
 ```{r}
 multi_metric <- metric_set(rmse, rsq)
@@ -243,6 +245,7 @@ metric_table
 The final step is to apply your model to predict new data. 
 
 Now read in the new data.  
+
 ```{r}
 submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
 
@@ -256,7 +259,7 @@ You will notice that the plot_kgCm2 is all `NA` because you don't know what the 
 submit_data
 ```
 
-As in "Step 5: Predict Test Data", use the model fitting on the training data (`biomass_fit`) to predict the new data.
+As in "Step 5: Predict Test Data", use the model that was fit on the training data (`biomass_fit`) to predict the new data.
 
 ```{r}
 new_predictions <- predict(biomass_fit, new_data = submit_data)
