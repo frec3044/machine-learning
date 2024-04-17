@@ -1,7 +1,9 @@
 ---
 title: "Introduction to Machine Learning via Tidymodels"
-format: revealjs
 editor: visual
+format:
+  revealjs:
+    embed-resources: true
 ---
 
 ## Surprise
@@ -103,7 +105,7 @@ https://www.researchgate.net/publication/347633181_Detection_of_Smoking_in_Indoo
 ## Lake Ice module as ML
 
 1.  Define question: **what is the lake ice in 2030?**
-2.  Obtain data: **read_csv**
+2.  Obtain data: **read_excel**
 3.  Define the type of ML: **supervised regression**
 4.  Identify method that will be used: **linear regression**
 5.  Pre-process data: **I already converted the date to DOY**
