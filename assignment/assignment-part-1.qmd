@@ -125,12 +125,13 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ```{r}
 new_data <- tibble(lake_name = "Sunapee",
-                   year = seq(2024, 2050, by = 1))
+                   year = seq(2024, 2050, by = 1),
+                   ice_off_doy = NA)
 ```
 
 ### Make new prediction
 
-**Question 9:** Provide code that predicts the ice-off day of year for the new data
+**Question 9:** Provide code that predicts the ice-off day of year for the new data (the `new_data` table above)
 
 **Answer 9:**
 
