@@ -143,7 +143,7 @@ An important rule when training a model is that you never use the training data 
 In summary: 
 
 - all data is divided into training and testing sets. 
-- The training set has 10 different grouping of training data.  Each group has an analysis and accessment set.
+- The training set has 10 different grouping of training data.  Each group has an analysis and assessment set.
 
 ### Estimate best hyper-parameters using tuning
 
@@ -170,7 +170,7 @@ In total the random forest model was run 25 * 10 times (25 different hyperparame
 The table below that is sorted so that best hyperparameter set (lowest RMSE) is at the top.  You can see the values for `mtry` and `min_n` that were used in the training and mean RMSE (`mean`) across all 10 "folds" (`n` is the number of folds).  
 
 ```{r}
-biomass_resample_fit %>% 
+biomass_resample_fit |>  
   collect_metrics() |> 
   arrange(mean)
 ```
@@ -178,8 +178,8 @@ biomass_resample_fit %>%
 The `select_best()` function extracts the hyperparameters with the best metric (`rmse`).  
 
 ```{r}
-best_hyperparameters <- biomass_resample_fit %>%
-  select_best("rmse")
+best_hyperparameters <- biomass_resample_fit |> 
+  select_best(metric = "rmse")
 ```
 
 Are these the same as the top row above?
@@ -194,7 +194,7 @@ Our workflow (model + recipe) needs to know the hyper-parameters to use to fit t
 
 ```{r}
 final_workflow <- 
-  biomass_wflow %>% 
+  biomass_wflow |> 
   finalize_workflow(best_hyperparameters)
 ```
 
@@ -239,15 +239,20 @@ metric_table
 This step is the same as `machine-learning-101.Rmd`
 
 ```{r}
-submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
 ```
 
 ```{r}
-new_predictions <- predict(biomass_fit, submit_data)
+new_predictions <- predict(biomass_fit, new_data)
 ```
 
 ```{r}
-submit_predicted <- bind_cols(submit_data, new_predictions) |>
-  mutate(team_name = "ADD YOUR LAST NAME")
+new_predicted <- bind_cols(new_data, new_predictions) |>
+  mutate(name = "ADD YOUR LAST NAME") |>
+  select(plotID, name, .pred)
+```
+
+```{r}
+write_csv(new_predicted, file = "predictions.csv")
 ```
 

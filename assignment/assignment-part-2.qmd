@@ -226,14 +226,8 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 Use your trained model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your csv to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
 
-Be sure to change the `name` to be your last name.
-
 ```{r}
-name <- "ADD YOUR LAST NAME"
-```
-
-```{r}
-submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
 ```
 
 
@@ -243,14 +237,16 @@ submit_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
 
 **Question 26:** Use `write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to write your submissions to a csv.
 
+Be sure to change the `name` to be your last name.
+
 **Answer 26:**
 
 ```{r}
 name <- "ADD YOUR LAST NAME HERE"
-submit_predicted <- bind_cols(submit_data, new_predictions) |>
+new_predicted <- bind_cols(new_data, new_predictions) |>
   mutate(name = name) |>
   select(plotID, name, .pred)
-write_csv(submit_predicted, file = paste0(name,"-submission.csv"))
+write_csv(new_predicted, file = paste0(name,"-submission.csv"))
 ```
 
 **Question 27:** Find your your csv on your computer from Question 26 and upload to Canvas.

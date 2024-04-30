@@ -279,7 +279,7 @@ new_predicted <- bind_cols(new_data, new_predictions) |>
   select(plotID, name, .pred)
 ```
 
-Write these predictions to a csv
+Write these predictions to a csv file
 
 ```{r}
 write_csv(new_predicted, file = "predictions.csv")
