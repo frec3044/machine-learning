@@ -76,7 +76,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ### Define workflow
 
-**Question 5:** Provide code that defines the workflow
+**Question 5:** Provide code that defines the workflow.  Print your workflow out so it displays in the rendered document.
 
 **Answer 5:**
 
@@ -110,7 +110,7 @@ First, copy data from ice lake phenology model into your data subdirectory in th
 
 ## Step 6: Evaluate model
 
-**Question 8:** Provide code that calculates the rmse and r2 for the test data
+**Question 8:** Provide code that calculates the rmse and r2 for the test data.  Be sure your table with the metrics is provided in the rendered html.
 
 **Answer 8:**
 
