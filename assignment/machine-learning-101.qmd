@@ -8,18 +8,18 @@ format:
 
 ## Step 1: Obtain data
 
-Read in data to memory.  In the course we have accessed csv, excel, and database forms that were located in a github repo, at a web address, and behind an API.
+Read in data to memory.  In the course, we have accessed data from CSV files, Excel files, databases, web addresses, and behind an API.
 
 ## Step 2: Pre-process data
 
 ### Split data: divide data into the training and test sets. 
 
-- You will use the training set to fit (train) your model and the testing set to evaluate the model performance.
-- We only want to evaluate our model using data that was not used in the training of the model.  Otherwise we can only say that the model is good at fitting the data that was used to train it.  This is not helpful for understanding how it would perform as a tool generate new predictions.
-- You want most of your data in the training set because machine learning models can be quite "hungry for data" (e.g, next a large dataset to find a good fit).
-- A typical split is 80% training and 20% testing but there isn't a required split. 
+- You will use the training set to fit (train) your model and the testing set to evaluate the model's performance.
+We only want to evaluate our model using data that was not used in its training. Otherwise, we can only say that the model is good at fitting the data that was used to train it. This is not helpful for understanding how it would perform as a tool to generate new predictions.
+You want most of your data in the training set because machine learning models can be quite "hungry for data" (e.g., they need a large dataset to find a good fit).
+- A typical split is 80% training and 20% testing, but there isn't a required split. 
 - Data are randomly assigned to the two splits.
-- Your data may have obvious groupings that you want to be equally represented in both the training and testing sets.  For example, if you have cats and dogs as a variable you are using the model to predict tail length as a function of species and height, you may want to be sure that your training set is not randomly full of dogs because than means it may not predict the cats well in the testing set.  You can prevent this by defining the `strata` used when assigning the training and testing sets.
+- Your data may have obvious groupings that you want to be equally represented in both the training and testing sets.  For example, if you have cats and dogs as a variable, and you are using the model to predict tail length as a function of species and height, you may want to be sure that your training set is not randomly full of dogs because that means it may not predict the cats well in the testing set.  You can prevent this by defining the `strata` used when assigning the training and testing sets.
 - If your data does not have groupings that you want to have evenly distributed in the training and testing set, you do not need to use a strata
 
 ### Recipes: Modify predictors/features/covariates/independent variables for analysis
@@ -31,7 +31,7 @@ Read in data to memory.  In the course we have accessed csv, excel, and database
 
 ## Step 3: Specify model and workflow
 
-A workflow combines the model and recipe in a single "object" that you can use for training, testing, and predicting new data.
+A workflow combines the model and recipe into a single "object" that can be used for training, testing, and predicting new data.
 
   - Define model type: linear regression, regression tree, neutral net, etc.
   - Define model engine: particular R package (`lm`, `ranger`, etc.)
@@ -40,7 +40,7 @@ A workflow combines the model and recipe in a single "object" that you can use f
 
 ## Step 4: Train model
 
-  - Tune hyper-parameters: hyper-parameters are configuration settings that govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameter within the model that are learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) could be directly provided by you or could be tuned.  The tuning process involves repeatedly fitting the model using different values of the hyper-parameter and using the hyper-parameter values that yield the best fit to the data. Importantly: not all ML methods have hyper-parameter (e.g., linear regression using the `lm` engine does not have hyper-parameters).  We don't tune hyperparameters in this example. See `example-with-tuning.Rmd` for an extension of this application that includes hyperparameter tuning.
+  - Tune hyper-parameters: hyper-parameters are configuration settings that govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameters within the model learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) could be directly provided by you or could be tuned.  The tuning process involves repeatedly fitting the model using different values of the hyper-parameter and using the hyper-parameter values that yield the best fit to the data. Importantly, not all ML methods have hyper-parameters (e.g., linear regression using the `lm` engine does not have hyper-parameters).  We don't tune hyperparameters in this example. See `example-with-tuning.Rmd` for an extension of this application that includes hyperparameter tuning.
   
   - Fit model (using best hyper-parameter if they are tuned).  The model is fit to the training data.
 
@@ -51,18 +51,18 @@ A workflow combines the model and recipe in a single "object" that you can use f
   
 ## Step 6: Evaluate model
 
-  - It is important to use the appropriate metrics to evaluate how the model performs.  Some metrics only apply to classification problems and other only apply to regression problems. A list of metric types can be found [here](https://yardstick.tidymodels.org/articles/metric-types.html)
-  - We will be focusing on root-mean squared error (`rmse`), a metric that subtracts each observation from the predictions, squares it, averages all the squared errors for all the data points, and then takes the square root of the mean squared error.  
+  - It is important to use the appropriate metrics to evaluate how the model performs.  Some metrics only apply to classification problems, and others only apply to regression problems. A list of metric types can be found [here](https://yardstick.tidymodels.org/articles/metric-types.html)
+  We will focus on root-mean-squared error (`rmse`), a metric that subtracts each observation from the predictions, squares it, averages all the squared errors for all the data points, and then takes the square root of the mean squared error.  
   - R-squared (`rsq`) is another metric that we used in the lake ice module.
   
 ## Step 7: Deploy model
 
-  - One of main points of using machine learning is to develop a tool that can be used with new predictors to predict data that wasn't involved in the training and testing.  These are new data have all the columns necessary to make predictions but lack data in the column you are trying to predict.  
-  - This step is simple because it involve using the `predict()` function with the same trained model but with new data.
+  - One of the main points of using machine learning is to develop a tool that can be used with new predictors to predict data that wasn't involved in the training and testing.  These are new data have all the columns necessary to make predictions but lack data in the column you are trying to predict.  
+  - This step is simple because it involves using the `predict()` function with the same trained model but with new data.
   
 # Application: Predicting biomass in NEON data
 
-In the example application, we are going to be using the vegetation carbon stock data that was used in the carbon stock model. Our goal is to predict the mean carbon stock of each plot in the NEON data.  This will allow us to build a model that could be used to predict carbon stocks at locations other than NEON and potentially provide a prediction tool for land-managers.
+In the example application, we will use the vegetation carbon stock data that was used in the carbon stock model. Our goal is to predict the mean carbon stock of each plot in the NEON data. This will allow us to build a model that could be used to predict carbon stocks at locations other than NEON and potentially provide a prediction tool for land managers.
 
 You will use the following packages.
 
@@ -81,7 +81,7 @@ The data are from the National Ecological Observatory Network, the DayMet projec
 biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
 ```
 
-In this example analysis, we are only going to be using three columns. `plotID` is the identifier for the plot, `nlcdClass` is the land-cover classification of plot, and `plot_kgCm2` is the vegetation carbon stock of the plot (kgC/m2). We are using to be using `nlcdClass` to predict `plot_kgCm2` for each `plotID`.
+In this example analysis, we will use only three columns. `plotID` is the plot's identifier, `nlcdClass` is the plot's land-cover classification, and `plot_kgCm2` is the plot's vegetation carbon stock (kgC/m2). We will use `nlcdClass` to predict `plot_kgCm2` for each `plotID`.
 
 ```{r}
 biomass_data <- biomass_data |> 
@@ -92,7 +92,7 @@ biomass_data <- biomass_data |>
 
 ### Split data into training/testing sets 
 
-We are going to split the data into training and testing sets using the `initial_split` function.  `prop = 0.80` says to use 80% of the data in the training set. Since we want the training and test sets to have representation of all the types of `nlcdClass`, we include it as a `strata`.
+We are going to split the data into training and testing sets using the `initial_split` function.  `prop = 0.80` says to use 80% of the data in the training set. Since we want the training and test sets to represent all the types of `nlcdClass`, we include it as a `strata`.
 
 
 
@@ -108,7 +108,7 @@ Our split should reflect the 80/20 that we defined using `prop`
 split
 ```
 
-To actually get the training and testing data we need to apply the `training()` and `testing()` functions to the split.
+To get the training and testing data, we need to apply the `training()` and `testing()` functions to the split.
 
 ```{r}
 train_data <- training(split)
@@ -123,8 +123,8 @@ train_data
 
 ### Feature engineering using a recipe
 
- - Requires starting with dataset that is used to provide the columns.
- - A formula with the dependent variable and the predictors.  If `.` is used as the predictors, that means use all columns other than the dependent variable.
+ - Requires starting with a dataset that is used to provide the columns.
+ - A formula with the dependent variable and the predictors.  If `.` is used as the predictor, that means using all columns other than the dependent variable.
  - Steps that modify the data
  
  We will use the following steps:
@@ -147,7 +147,7 @@ biomass_recipe <- train_data |>
   step_dummy(nlcdClass)
 ```
 
-The recipe should show the steps that will be performed when applying the recipe. Importantly, these steps have not yet been applied, we just have a recipe of what to do.
+The recipe should show the steps that will be performed when applying it. Importantly, these steps have not yet been applied; we just have a recipe for what to do.
 
 ```{r}
 biomass_recipe
@@ -155,9 +155,9 @@ biomass_recipe
 
 ## Step 3: Specify model, engine, and workflow
 
-We need to create the model and engine that we will use. In this example, we are using `linear_reg` with the mode of `regression` (as opposed to `classification`). Setting the mode for a linear regression is actually not necessary because it only allows regressions but it is included here for completeness. 
+We need to create the model and engine that we will use. In this example, we are using `linear_reg` with the mode of `regression` (as opposed to `classification`). Setting the mode for linear regression is actually not necessary because it only allows regressions, but it is included here for completeness. 
 
-The engine is `lm` because we are using the standard R function `lm`.  There are a ton of other functions for linear regression modeling that we could use.  They would be specified as a different engine.
+The engine is `lm` because we are using the standard R function `lm`.  We could other functions for linear regression modeling, and they would be specified as a different engine.
 
 ```{r}
 linear_mod <- 
@@ -171,7 +171,7 @@ You will see the model, mode, and engine in the model object
 linear_mod 
 ```
 
-We now combine the model and the recipe together to make a workflow that can be used to fit the training and testing data. `workflow()` initiates the workflow and `add_model` and `add_recipe` add those components to the workflow.  Importantly, the workflow has not yet been applied, we just have description of what to do.
+We now combine the model and the recipe to make a workflow that can be used to fit the training and testing data. `workflow()` initiates the workflow, and `add_model` and `add_recipe` add those components to it. Importantly, the workflow has not yet been applied; we just have a description of what to do.
 
 ```{r}
 biomass_wflow <-
@@ -257,7 +257,7 @@ new_data <- new_data |>
   select(plotID, nlcdClass, plot_kgCm2)
 ```
 
-You will notice that the plot_kgCm2 is all `NA` because you don't know what the carbon stock is of the plot.
+You will notice that the plot_kgCm2 is all `NA` because you don't know the plot's carbon stock (we are predicting it).
 
 ```{r}
 submit_data
@@ -279,7 +279,7 @@ new_predicted <- bind_cols(new_data, new_predictions) |>
   select(plotID, name, .pred)
 ```
 
-Write these predictions to a csv file
+Write these predictions to a CSV file
 
 ```{r}
 write_csv(new_predicted, file = "predictions.csv")
@@ -287,9 +287,9 @@ write_csv(new_predicted, file = "predictions.csv")
 
 # Assignment
 
-Your assignment is divided into two Quarto markdown documents files that use data that you have already seen in the previous modules.
+Your assignment is divided into two Quarto markdown document files that use data that you have already seen in the previous modules.
 
-1) `assignment-part-1.qmd` challenges you to translate the linear regression that you did in the lake ice module follow the tidymodel machine learning format presented in this Rmd
+1) `assignment-part-1.qmd` challenges you to translate the linear regression that you did in the lake ice module following the tidymodel machine learning format presented in this Rmd
 
 2) `assignment-part-2.qmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
 
