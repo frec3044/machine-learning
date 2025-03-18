@@ -1,6 +1,6 @@
 ---
 title: "Assignment Part 1: Lake Ice"
-author: "Add you name"
+author: "Add your name"
 format:
   html:
     embed-resources: true
@@ -13,20 +13,20 @@ tidymodels_prefer()
 set.seed(100)
 ```
 
-## Objective
+# Objective
 
-Apply the tidymodel approach above to the ice-off data from the second module. Your goal is to translate the linear regression from the the lake ice module into the tidymodels machine learning framework.  
+Apply the tidymodel approach above to the ice-off data from the second module. Your goal is to translate the linear regression from the lake ice module into the tidymodels machine learning framework.  
 
 ## Tips
 
 - You should be using the same model and engine as in `machine-learning-101.Rmd`
-- Since the data are already processed you won't have any steps in your recipe.  Your recipe will just have a formula in the `recipe()`
+- Since the data are already processed you won't have any steps in your recipe.  Your recipe will have a formula in the `recipe()`
 
 ## Step 1: Obtain data
 
-First, copy data from ice lake phenology model into your data subdirectory in this module.  
+First, copy data from the ice lake phenology model into your data subdirectory in this module.
 
-**Question 1:** Provide code for reading in data and filtering the data to only be Lake Sunapee. 
+**Question 1:** Provide code for reading in data and filtering it to only include Lake Sunapee. 
 
 **Answer 1:**
 
@@ -129,9 +129,9 @@ new_data <- tibble(lake_name = "Sunapee",
                    ice_off_doy = NA)
 ```
 
-### Make new prediction
+### Make a new prediction
 
-**Question 9:** Provide code that predicts the ice-off day of year for the new data (the `new_data` table above)
+**Question 9:** Provide code that predicts the ice-off day of the year for the new data (the `new_data` table above)
 
 **Answer 9:**
 
@@ -149,7 +149,7 @@ new_data <- tibble(lake_name = "Sunapee",
 
 ```
 
-## Knitting and committing
+# Knitting and committing
 
-Remember to Render your document as a `html` and comment+push to GitHub your code and Rendered html
+Remember to Render your document as an `HTML` and comment+push to GitHub your code and rendered HTML
 
