@@ -212,7 +212,8 @@ biomass_fit <- final_workflow |>
 This step is the same as `machine-learning-101.Rmd`
 
 ```{r}
-predictions <- predict(biomass_fit, test_data)
+predictions <- predict(biomass_fit, 
+                       new_data = test_data)
 ```
 
 ```{r}
@@ -243,7 +244,8 @@ new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
 ```
 
 ```{r}
-new_predictions <- predict(biomass_fit, new_data)
+new_predictions <- predict(biomass_fit, 
+                           new_data = new_data)
 ```
 
 ```{r}

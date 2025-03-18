@@ -8,7 +8,7 @@ format:
 
 ## Step 1: Obtain data
 
-Read in data to memory.  In the course, we have accessed data from CSV files, Excel files, databases, web addresses, and behind an API.
+Read in data to memory.  In the course, we have accessed data from CSV files, Excel files, databases, web addresses, and behind an API. 
 
 ## Step 2: Pre-process data
 
