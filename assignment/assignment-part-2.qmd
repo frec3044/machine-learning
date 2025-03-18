@@ -1,6 +1,6 @@
 ---
 title: "Assignment Part 2: new ML model"
-author: "Add you name"
+author: "Add your name"
 format:
   html:
     embed-resources: true
@@ -25,11 +25,11 @@ This assignment requires the following
   
 - You can't use `lm` as an engine (since you have already done this twice)
 
-- You must upload your predictions of the new carbon stock data to Canvas as a csv.
+- You must upload your predictions of the new carbon stock data to Canvas as a CSV.
   
 ### Guidance
 
-You will need to explore the different models/engines that are available in the tidymodels package.  Following the the link below will show the list of models that are available.  Clicking on a model type will show the different engines that are available to use.  
+You will need to explore the different models/engines available in the tidy models package. The link below will show the list of available models. Clicking on a model type will show the different engines available to use.  
 
 **[Alternative modeling approaches](https://parsnip.tidymodels.org/reference/index.html#models)**
 
@@ -47,7 +47,7 @@ Once you start pre-processing your data using a recipe, the following link will 
 
 **[Different recipes steps for feature engineering](https://recipes.tidymodels.org/reference/index.html)**
 
-There are broad classes of recipe steps that you might find useful for the data that you are working with in this assignment.  You will be not be using all the available steps.
+There are broad classes of recipe steps that you may find helpful for the data that you are working within this assignment.  You will not be using all the available steps.
 
 - [Imputation (fill NA values)](https://recipes.tidymodels.org/reference/index.html#step-functions-imputation)
 - [Transform variables](https://recipes.tidymodels.org/reference/index.html#step-functions-individual-transformations)
@@ -68,7 +68,7 @@ There are broad classes of recipe steps that you might find useful for the data 
 **Answer 12:**
 
 
-**Question 13:** Does the model require any special pre-processing of data. If so describe the steps needed.
+**Question 13:** Does the model require any special data pre-processing? If so, describe the steps needed.
 
 **Answer 13:**
 
@@ -120,7 +120,7 @@ spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 
 This step is only required if you are using a model and engine that has hyper-parameters that can be tuned.
 
-**Question 16:** Provide code for splitting data into folds. If your model does not require parameter tuning, then state that as your answer rather than providing the code.
+**Question 16:** Provide code for splitting data into folds. If your model does not require parameter tuning, then please just go ahead and state that as your answer rather than providing the code.
 
 **Answer 16:**
 
@@ -213,7 +213,7 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ## Step 7: Evaluate model
 
-**Question 24:** Provide code calculates the rmse and r2 for the test data.  Make sure that the table with `rmse` and `r2` is shown in your rendered document.
+**Question 24:** Provide code that calculates the rmse and r2 for the test data.  Make sure that the table with `rmse` and `r2` is shown in your rendered document.
 
 **Answer 24:**
 
@@ -224,7 +224,7 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ## Step 8: Deploy model
 
-Use your trained model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your csv to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
+Use your trained model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your CSV to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
 
 ```{r}
 new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
@@ -237,7 +237,7 @@ new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
 
 **Question 26:** Use `write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to write your submissions to a csv.
 
-Be sure to change the `name` to be your last name.
+Be sure to change the `name` to your last name.
 
 **Answer 26:**
 
@@ -249,11 +249,11 @@ new_predicted <- bind_cols(new_data, new_predictions) |>
 write_csv(new_predicted, file = paste0(name,"-submission.csv"))
 ```
 
-**Question 27:** Find your your csv on your computer from Question 26 and upload to Canvas.
+**Question 27:** Find your CSV on your computer from Question 26 and upload to Canvas.
 
 **Answer 27:**
 
 ## Knitting and committing
 
-Remember to Render your document as an `html` and comment+push to GitHub your code and rendered document.
+Remember to Render your document as an `HTML` and comment+push to GitHub your code and rendered document.
 
