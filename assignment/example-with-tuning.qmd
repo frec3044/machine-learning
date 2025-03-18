@@ -104,7 +104,7 @@ This model has 3 tuning hyper-parameters:
 - `trees`: Trees (type: integer, default: `500L`)
 - `min_n`: Minimal Node Size (type: integer, default: see below). `min_n` depends on the mode. For regression, a value of 5 is the default. For classification, a value of 10 is used.
 
-We will tune two of them in our model (`mtry` and `min_n`).  Setting the hyper-parameter equal to `tune()` is a placeholder that says we plan to tune it.  We also set `num.threads = parallel::detectCores()` so that the tuning uses the power of your computer to the fullest.
+We will tune two of them in our model (`mtry` and `min_n`).  Setting the hyper-parameter equal to `tune()` is a placeholder that says we plan to tune it.  We also set `num.threads = parallel::detectCores()` so that the tuning uses the power of your computer to the fullest by assigns different model runs to different computer cores (laptops often have 4-8 cores).
 
 ```{r}
 rand_for_mod <- 

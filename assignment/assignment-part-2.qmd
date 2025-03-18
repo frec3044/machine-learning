@@ -257,3 +257,8 @@ write_csv(new_predicted, file = paste0(name,"-submission.csv"))
 
 Remember to Render your document as an `html` and comment+push to GitHub your code and rendered document.
 
+# Attribution
+
+Include citation of any AI-generated assistance or discussion with classmates (per policy in syllabus). Proper documentation of AI-generated assistance includes the prompt, the source (e.g., ChatGPT), and the significant parts of the response.  Proper documentation of discussion with classmates include listing their names and the components discussed.  
+
+
