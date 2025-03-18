@@ -8,7 +8,7 @@ format:
 
 ## Surprise
 
-You have already done machine learning in the class
+You have already done machine learning in class
 
 $~$
 
@@ -85,12 +85,12 @@ https://www.researchgate.net/publication/347633181_Detection_of_Smoking_in_Indoo
 
 ## Big picture steps in ML
 
-1.  Define question (what are you predicting...is it ethical?)
+1.  Define the question (what are you predicting...is it ethical?)
 2.  Obtain data
 3.  Define the type of ML (supervised vs. unsupervised, regression vs. classification).
-4.  Identify method that will be used (this influences how data will be pre-processed)
+4.  Identify the method that will be used (this influences how data will be pre-processed)
 5.  Pre-process data (also called feature engineering)
-6.  Define specific approach for applying the model (i.e., which R package)
+6.  Define a specific approach for applying the model (i.e., which R package)
 
 ## Big picture steps in ML
 
@@ -107,9 +107,9 @@ https://www.researchgate.net/publication/347633181_Detection_of_Smoking_in_Indoo
 1.  Define question: **what is the lake ice in 2030?**
 2.  Obtain data: **read_excel**
 3.  Define the type of ML: **supervised regression**
-4.  Identify method that will be used: **linear regression**
+4.  Identify the method that will be used: **linear regression**
 5.  Pre-process data: **I already converted the date to DOY**
-6.  Define specific approach for applying the model: `lm`
+6.  Define a specific approach for applying the model: `lm`
 
 ## Lake Ice module as ML
 
@@ -119,7 +119,7 @@ https://www.researchgate.net/publication/347633181_Detection_of_Smoking_in_Indoo
 
 ## Lake Ice module as ML
 
-10. Deploy model (predict new data): **predicted for year 2030**
+10. Deploy model (predict new data): **predicted for the year 2030**
 
 ## Tidyverse take on ML
 
@@ -133,7 +133,7 @@ Tidymodels (meta-package)
 
 $~$
 
-> Whether you are just starting out today or have years of experience with modeling, tidymodels offers a consistent, flexible framework for your work.
+> Whether you are just starting today or have years of experience with modeling, tidymodels offers a consistent, flexible framework for your work.
 
 ::: aside
 https://www.tidymodels.org
