@@ -37,7 +37,7 @@ fit <- lm(doy ~ year, data = sunapee)
 
 ## Broad classes of ML
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ### Supervised
 
@@ -53,11 +53,11 @@ fit <- lm(doy ~ year, data = sunapee)
 
 -   Goal is to use predictors to create groups
 :::
-:::
+:::::
 
 ## Broad classes of ML
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ### Supervised
 
@@ -73,7 +73,7 @@ fit <- lm(doy ~ year, data = sunapee)
     -   Recommendation systems - if you like a movie, ML can find movies like it to recommend
     -   What are the characteristics of different groups that buy a product?
 :::
-:::
+:::::
 
 ## ML Flow chart
 

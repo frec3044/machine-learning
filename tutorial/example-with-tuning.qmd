@@ -20,7 +20,7 @@ This extends the example in `machine-learning-101.Rmd` to include hyperparameter
 In this example, we are going to use the same NEON biomass data with an additional predictor (`lat`)
 
 ```{r}
-biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE) |> 
+biomass_data <- read_csv("../assignment/data/neon_biomass.csv", show_col_types = FALSE) |> 
   select(plotID, nlcdClass, plot_kgCm2, lat)
 ```
 
@@ -240,7 +240,7 @@ metric_table
 This step is the same as `machine-learning-101.Rmd`
 
 ```{r}
-new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
+new_data <- read_csv("../assignmment/data/neon_biomass_new.csv", show_col_types = FALSE) 
 ```
 
 ```{r}

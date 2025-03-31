@@ -1,9 +1,9 @@
-This repository is a template for the lake machine learning module.
+This repository is a template for the machine learning module.
 
 ## Tutorials
 
-- `assignment/example-with-tuning.qmd`
-- `assignment/machine-learning-101.qmd`
+- `tutorial/example-with-tuning.qmd`
+- `tutorial/machine-learning-101.qmd`
 
 ## Assignment
 

@@ -35,12 +35,12 @@ Completion of two other modules on GitHub
 
 ## Instructions
 
--   Read and execute `assignment/machine-learning-101.qmd` in Rstudio
+-   Read and execute `tutorial/machine-learning-101.qmd` in Rstudio
 -   Complete the notebook `assignment/assignment-part-1.qmd` in RStudio
 -   `render` + commit output files to GitHub
--   Read and execute `assignment/example-with-tuning.qmd` in Rstudio
+-   Read and execute `tutorial/example-with-tuning.qmd` in Rstudio
 -   Complete the notebook `assignment/assignment-part-2.qmd` in RStudio
-    -   `render` + commit output files to GitHub
+-   `render` + commit output files to GitHub
 
 ## Context
 

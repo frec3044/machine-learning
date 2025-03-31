@@ -78,7 +78,7 @@ set.seed(100) #for random number generation
 The data are from the National Ecological Observatory Network, the DayMet project (meteorology data), and NASA's MODIS satellite.  They have been combined to provide the woody vegetation carbon stocks for each NEON plot and the associated meteorology, land-use classification, and normalized vegetation index (from MODIS).
 
 ```{r}
-biomass_data <- read_csv("data/neon_biomass.csv", show_col_types = FALSE)
+biomass_data <- read_csv("../assignment/data/neon_biomass.csv", show_col_types = FALSE)
 ```
 
 In this example analysis, we will use only three columns. `plotID` is the plot's identifier, `nlcdClass` is the plot's land-cover classification, and `plot_kgCm2` is the plot's vegetation carbon stock (kgC/m2). We will use `nlcdClass` to predict `plot_kgCm2` for each `plotID`.
@@ -255,7 +255,7 @@ The final step is to apply your model to predict new data.
 Now read in the new data.  
 
 ```{r}
-new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
+new_data <- read_csv("../assignment/data/neon_biomass.csv", show_col_types = FALSE)
 
 new_data <- new_data |> 
   select(plotID, nlcdClass, plot_kgCm2)
@@ -293,9 +293,9 @@ write_csv(new_predicted, file = "predictions.csv")
 
 Your assignment is divided into two Quarto markdown document files that use data that you have already seen in the previous modules.
 
-1) `assignment-part-1.qmd` challenges you to translate the linear regression that you did in the lake ice module following the tidymodel machine learning format presented in this Rmd
+1) `assignment/assignment-part-1.qmd` challenges you to translate the linear regression that you did in the lake ice module following the tidymodel machine learning format presented in this Rmd
 
-2) `assignment-part-2.qmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
+2) `assignment/assignment-part-2.qmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
 
 
 
