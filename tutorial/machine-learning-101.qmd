@@ -6,6 +6,10 @@ format:
     embed-resources: true
 ---
 
+### Step 0: Define question
+
+We has address many questions in this class related to atmospheric, terrestrial, and aquatic ecosystems.
+
 ## Step 1: Obtain data
 
 Read in data to memory.  In the course, we have accessed data from CSV files, Excel files, databases, web addresses, and behind an API. 
@@ -255,7 +259,7 @@ The final step is to apply your model to predict new data.
 Now read in the new data.  
 
 ```{r}
-new_data <- read_csv("../assignment/data/neon_biomass.csv", show_col_types = FALSE)
+new_data <- read_csv("../assignment/data/neon_biomass_new.csv", show_col_types = FALSE)
 
 new_data <- new_data |> 
   select(plotID, nlcdClass, plot_kgCm2)
@@ -264,7 +268,7 @@ new_data <- new_data |>
 You will notice that the plot_kgCm2 is all `NA` because you don't know the plot's carbon stock (we are predicting it).
 
 ```{r}
-submit_data
+new_data
 ```
 
 As in "Step 5: Predict Test Data", use the model that was fit on the training data (`biomass_fit`) to predict the new data.

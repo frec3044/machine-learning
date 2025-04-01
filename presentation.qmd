@@ -94,9 +94,9 @@ https://www.researchgate.net/publication/347633181_Detection_of_Smoking_in_Indoo
 
 ## Big picture steps in ML
 
-7.  Define data splits (training vs. testing)
-8.  Fit (train) model to training data
-9.  Evaluate (validate) the model with testing data (need to evaluate with testing data because ML learns the training data)
+7.  Define data splits (training vs. testing - often 80%/20% split)
+8.  Fit (train) model to [training]{.underline} data
+9.  Evaluate (validate) the model with [testing]{.underline} data (need to evaluate with testing data because ML learns the training data)
 
 ## Big picture steps in ML
 
@@ -163,7 +163,7 @@ https://rpubs.com/chenx/tidymodels_tutorial
 -   Instruction in tidymodels applied to predicting carbon
 -   Assignment part 1: apply to predicting lake ice
 -   Instruction in tuning ML models
--   Assignment part 2: apply predicting to forest carbon
+-   Assignment part 2: apply to predictingforest carbon
 
 ## Focal dataset
 
@@ -186,7 +186,7 @@ nrow(biomass)
 
 ### Predict out-of-sample data
 
--   You have the "predictors" for 48 additional sites
+-   You have the "predictors" for 57 additional sites
 -   I have the carbon stocks
--   You will submit your predictions of these 48 via Canvas
+-   You will submit your predictions of these 57 via Canvas
 -   I will summarize and compare the results.
