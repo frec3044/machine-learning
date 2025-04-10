@@ -2,7 +2,7 @@
 
 ## Overview
 
-Machine learning is a widely used tool for predicting environmental data. This module builds on previously used datasets to teach and practice broad concepts in machine learning. It uses the tidymodels framework to break down machine learning into a repeatable set of step. While the tidymodel approach which is specific to R, the goal is for students to understand the process of machine learning that transcends the particular package or programming language environment.
+Machine learning is a widely used tool for predicting environmental data. This module builds on previously used datasets to teach and practice broad concepts in machine learning. It uses the tidymodels framework to break down machine learning into a repeatable set of steps. While the tidymodel approach is specific to R, the goal is for students to understand the process of machine learning that transcends the particular package or programming language environment.
 
 -   author: Quinn Thomas (@rqthomas)
 -   contact: [rqthomas\@vt.edu](mailto:rqthomas@vt.edu){.email}
