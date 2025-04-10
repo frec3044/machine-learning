@@ -64,7 +64,7 @@ Question 8:
 
 -   Full Credit: Correct R2 and RMSE are displayed in a table.  Code uses tidymodel functions to calculate R2 and RMSE
 
--   Partial Credit: Code does not correctly calculate R2 and RMSE OR no table is displayed OR code does not use tidymodel functions
+-   Partial Credit: Code does not correctly calculate R2 and RMSE OR no table is displayed OR code does not use tidymodel functions OR more metrics than R2 and RMSE are shown.
 
 -   No Credit: No code submitted
 
@@ -100,7 +100,7 @@ GitHub
 
 -   Partial Credit: Assignment found on course GitHub, but only a single commit was provided (no evidence that the student saved and committed progress) or missing HTML on GitHub.
 
--   No Credit: Assignment not found on the course GitHub organization
+-   No Credit: Assignment not found on the course GitHub organization OR no commits on GitHub found.
 
 ## Part 2
 
@@ -212,7 +212,7 @@ Question 24:
 
 -   Full Credit: Correct R2 and RMSE are displayed in a table.  Code uses tidymodel functions to calculate R2 and RMSE
 
--   Partial Credit: Code does not correctly calculate R2 and RMSE OR no table is displayed OR code does not use tidymodel functions
+-   Partial Credit: Code does not correctly calculate R2 and RMSE OR no table is displayed OR code does not use tidymodel functions OR more metrics than R2 and RMSE are shown.
 
 -   No Credit: No code submitted
 
@@ -244,7 +244,7 @@ GitHub
 
 -   Partial Credit: Assignment found on course GitHub, but only a single commit was provided (no evidence that the student saved and committed progress) or missing HTML on GitHub.
 
--   No Credit: Assignment not found on the course GitHub organization
+-   No Credit: Assignment not found on the course GitHub organization OR no commits on GitHub found.
 
 ## Part 3
 

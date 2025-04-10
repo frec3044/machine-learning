@@ -21,7 +21,7 @@ Using machine learning and tidymodels to predict how much carbon is stored in ve
 
 This assignment requires the following
 
-- You must use more predictors than used in the `machine-learning-101.Rmd` and `example-with-tuning.Rmd`.  You do not have to use all predictors.  In fact, one of the decisions that you will be making is which predictors you will include.
+- You must use more predictors than used in the `tutorial/tutorial1-machine-learning-101.qmd` and `tutorial/tutorial2-example-with-tuning.Rmd`.  You do not have to use all predictors.  In fact, one of the decisions that you will be making is which predictors you will include.
   
 - You can't use `lm` as an engine (since you have already done this twice)
 

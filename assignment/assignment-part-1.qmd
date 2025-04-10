@@ -19,7 +19,7 @@ Apply the tidymodel approach above to the ice-off data from the second module. Y
 
 ## Tips
 
-- You should be using the same model and engine as in `machine-learning-101.Rmd`
+- You should be using the same model and engine as in `tutorial/tutorial1-machine-learning-101.qmd`
 - Since the data are already processed you won't have any steps in your recipe.  Your recipe will have a formula in the `recipe()`
 
 ## Step 1: Obtain data
