@@ -21,12 +21,14 @@ Using machine learning and tidymodels to predict how much carbon is stored in ve
 
 This assignment requires the following
 
+- Use two different models to generate predictions of plot-level forest carbon
+
+- Your two models can't be both `linear_reg` or `rand_forest` (we have already used these).  You can use one or the other as one of your two models, just not both. 
+
 - You must use more predictors than used in the `tutorial/tutorial1-machine-learning-101.qmd` and `tutorial/tutorial2-example-with-tuning.Rmd`.  You do not have to use all predictors.  In fact, one of the decisions that you will be making is which predictors you will include.
-  
-- You can't use `lm` as an engine (since you have already done this twice)
 
 - You must upload your predictions of the new carbon stock data to Canvas as a CSV.
-  
+
 ### Guidance
 
 You will need to explore the different models/engines available in the tidy models package. The link below will show the list of available models. Clicking on a model type will show the different engines available to use.  
@@ -59,20 +61,36 @@ There are broad classes of recipe steps that you may find helpful for the data t
 
 ## Step 0: Warm-up
 
-**Question 11:** What model and engine did you select to use?
+**Question 11:** What two model and engines did you select to use?
 
 **Answer 11:**
 
-**Question 12:** Provide a high level description of the modeling approach you choose in Question 11.
+Model 1:
+
+Model 2:
+
+**Question 12:** Provide a high level description of the modeling approachs you choose in Question 11 (max of two sentences each)
 
 **Answer 12:**
 
+Model 1:
 
-**Question 13:** Does the model require any special data pre-processing? If so, describe the steps needed.
+Model 2:
+
+
+**Question 13:** Do either models require any special data pre-processing? If so, describe the steps needed.
 
 **Answer 13:**
 
-**Question 14:** List any hyper-parameters that can be tuned
+Model 1:
+
+Model 2:
+
+**Question 14:** List any hyper-parameters that can be tuned in the models
+
+Model 1:
+
+Model 2: 
 
 **Answer 14:**
 
@@ -131,23 +149,32 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ### Feature engineering using a recipe
 
-**Question 17:** Provide code that defines the recipe for feature engineering. Be sure to follow the recommendations for your selected engine. 
+**Question 17:** Provide code that defines the recipe for feature engineering. 
 
 **Answer 17:**
+
 
 ```{r}
 
 
 ```
 
-
 ## Step 3: Specify model and workflow
 
 ### Define model type and mode
 
-**Question 18:** Provide code that defines your model (model type + engine).
+**Question 18:** Provide code that defines your two models (model type + engine).
 
 **Answer 18:**
+
+Model 1:
+
+```{r}
+
+
+```
+
+Model 2:
 
 ```{r}
 
@@ -160,6 +187,15 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 **Answer 19:**
 
+Model 1:
+
+```{r}
+
+
+```
+
+Model 2:
+
 ```{r}
 
 
@@ -169,9 +205,18 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ### Estimate best hyper-parameters using tuning
 
-**Question 20:** Provide code that tunes the hyper-parameters of your model.  If your model+engine does not require tuning, then state that as your answer.
+**Question 20:** Provide code that tunes the hyper-parameters of your model (if your model has hyper-parameters you are required tune at least one of them).  If your model+engine does not have hyper-parameters that can be tuned, then state that as your answer.
 
 **Answer 20:**
+
+Model 1:
+
+```{r}
+
+
+```
+
+Model 2: 
 
 ```{r}
 
@@ -184,6 +229,15 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 **Answer 21:**
 
+Model 1:
+
+```{r}
+
+
+```
+
+Model 2: 
+
 ```{r}
 
 
@@ -194,6 +248,15 @@ This step is only required if you are using a model and engine that has hyper-pa
 **Question 22:** Provide code that fits your model to the training data. Use the best hyper-parameter if you tuned them.
 
 **Answer 22:**
+
+Model 1: 
+
+```{r}
+
+
+```
+
+Model 2:
 
 ```{r}
 
@@ -206,6 +269,15 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 **Answer 23:**
 
+Model 1: 
+
+```{r}
+
+
+```
+
+Model 2: 
+
 ```{r}
 
 
@@ -213,9 +285,18 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ## Step 7: Evaluate model
 
-**Question 24:** Provide code that calculates the rmse and r2 for the test data.  Make sure that the table with `rmse` and `r2` is shown in your rendered document.
+**Question 24:** Provide code that calculates the `rmse` and `r2` for the test data.  Make sure that the table with `rmse` and `r2` is shown in your rendered document.
 
 **Answer 24:**
+
+Model 1: 
+
+```{r}
+
+
+```
+
+Model 2: 
 
 ```{r}
 
@@ -224,7 +305,7 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ## Step 8: Deploy model
 
-Use your trained model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your CSV to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
+Use your *best model* to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your CSV to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
 
 ```{r}
 new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
@@ -239,12 +320,16 @@ new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE)
 
 Be sure to change the `name` to your last name.
 
+Be sure to change your model to the exact name of the model you used.  For example, we have used `rand_forest` and `linear_reg`.  Do not provide your engine.  We will use this column to understand how performance varies with modeling approach.
+
 **Answer 26:**
 
 ```{r}
 name <- "ADD YOUR LAST NAME HERE"
+model_type <- "ADD YOUR MODEL TYPE"
 new_predicted <- bind_cols(new_data, new_predictions) |>
-  mutate(name = name) |>
+  mutate(name = name,
+         model = model_type) |>
   select(plotID, name, .pred)
 write_csv(new_predicted, file = paste0(name,"-submission.csv"))
 ```

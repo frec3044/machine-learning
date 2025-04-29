@@ -106,7 +106,7 @@ split <- initial_split(biomass_data,
                        strata = nlcdClass)
 ```
 
-**Important note: you will not always use a strata (this has confused students in the past).** If your data does not have groupings that you want to have evenly distributed in the training and testing set, you do not need to use a strata.  This case you would have `split <- initial_split(biomass_data, prop = 0.80)`)
+**Important note: you will not always use a strata (this has confused students in the past).** If your data does not have groupings (e.g., categorical variables) that you want to have evenly distributed in the training and testing set, you do not need to use a strata.  This case you would have `split <- initial_split(biomass_data, prop = 0.80)`)
 
 Our split should reflect the 80/20 that we defined using `prop`
 
@@ -277,14 +277,16 @@ As in "Step 5: Predict Test Data", use the model that was fit on the training da
 new_predictions <- predict(biomass_fit, new_data = new_data)
 ```
 
-Now create a data frame with the new data, predictions, and your name. 
+Now create a data frame with the new data, predictions, model type, and your name. 
 
 **Be sure to add your name to the `mutate()`**
 
+
 ```{r}
 new_predicted <- bind_cols(new_data, new_predictions) |>
-  mutate(name = "ADD YOUR NAME HERE") |>
-  select(plotID, name, .pred)
+  mutate(name = "ADD YOUR NAME HERE",
+         model = "linear_reg") |>
+  select(plotID, name, model, .pred)
 ```
 
 Write these predictions to a CSV file

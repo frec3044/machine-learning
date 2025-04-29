@@ -250,8 +250,9 @@ new_predictions <- predict(biomass_fit,
 
 ```{r}
 new_predicted <- bind_cols(new_data, new_predictions) |>
-  mutate(name = "ADD YOUR LAST NAME") |>
-  select(plotID, name, .pred)
+  mutate(name = "ADD YOUR LAST NAME",
+         model = "rand_forest") |>
+  select(plotID, name, model, .pred)
 ```
 
 ```{r}
