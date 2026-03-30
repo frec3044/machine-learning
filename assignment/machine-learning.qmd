@@ -1,6 +1,6 @@
 ---
 title: "Assignment Part 2: new ML model"
-author: "Add your name"
+author: "YOUR NAME"
 format:
   html:
     embed-resources: true
@@ -13,6 +13,10 @@ tidymodels_prefer()
 set.seed(100)
 ```
 
+## GitHub link
+
+Provide link to your assignment GitHub repository here:
+
 ## Objective
 
 Using machine learning and tidymodels to predict how much carbon is stored in vegetation across the U.S.
@@ -23,9 +27,9 @@ This assignment requires the following
 
 - Use two different models to generate predictions of plot-level forest carbon
 
-- Your two models can't be both `linear_reg` or `rand_forest` (we have already used these).  You can use one or the other as one of your two models, just not both. 
+- Your two models can't be both `linear_reg` or `rand_forest` (we have already used these).  You can use one or the other as one of your two models, just not both. One of your models must use hyper-parameter tuning.
 
-- You must use more predictors than used in the `tutorial/tutorial1-machine-learning-101.qmd` and `tutorial/tutorial2-example-with-tuning.Rmd`.  You do not have to use all predictors.  In fact, one of the decisions that you will be making is which predictors you will include.
+- You must use more predictors than used in the `tutorial/tutorial1-machine-learning-101.qmd` and `tutorial/tutorial2-example-with-tuning.Rmd`.  You do not have to use all predictors.  In fact, one of the decisions that you will be making is which predictors you will include.  Do not include variables that are not meant to be predictors.
 
 - You must upload your predictions of the new carbon stock data to Canvas as a CSV.
 
@@ -61,38 +65,38 @@ There are broad classes of recipe steps that you may find helpful for the data t
 
 ## Step 0: Warm-up
 
-**Question 11:** What two model and engines did you select to use?
+**Question 1:** What two model and engines did you select to use?
 
-**Answer 11:**
-
-Model 1:
-
-Model 2:
-
-**Question 12:** Provide a high level description of the modeling approachs you choose in Question 11 (max of two sentences each)
-
-**Answer 12:**
+**Answer 1:**
 
 Model 1:
 
 Model 2:
 
+**Question 2:** Provide a high level description of the modeling approaches you chose in Question 11 (max of two sentences each)
 
-**Question 13:** Do either models require any special data pre-processing? If so, describe the steps needed.
-
-**Answer 13:**
+**Answer 2:**
 
 Model 1:
 
 Model 2:
 
-**Question 14:** List any hyper-parameters that can be tuned in the models
+
+**Question 3:** Do either models require any special data pre-processing? If so, describe the steps needed.
+
+**Answer 3:**
+
+Model 1:
+
+Model 2:
+
+**Question 4:** List any hyper-parameters that can be tuned in the models
 
 Model 1:
 
 Model 2: 
 
-**Answer 14:**
+**Answer 4:**
 
 ## Step 1: Obtain data
 
@@ -125,9 +129,9 @@ spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 
 ### Split data into training/testing sets
 
-**Question 15:** Provide code for splitting data
+**Question 5:** Provide code for splitting data
 
-**Answer 15:**
+**Answer 5:**
 
 ```{r}
 
@@ -136,11 +140,11 @@ spc_tbl_ [1,000 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 
 ### Split training data into folds
 
-This step is only required if you are using a model and engine that has hyper-parameters that can be tuned.
+This step is for your model(s) and engine(s) that have hyper-parameters that can be tuned.
 
-**Question 16:** Provide code for splitting data into folds. If your model does not require parameter tuning, then please just go ahead and state that as your answer rather than providing the code.
+**Question 6:** Provide code for splitting data into folds. If your model does not require parameter tuning, then please just go ahead and state that as your answer rather than providing the code.
 
-**Answer 16:**
+**Answer 6:**
 
 ```{r}
 
@@ -149,9 +153,9 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ### Feature engineering using a recipe
 
-**Question 17:** Provide code that defines the recipe for feature engineering. 
+**Question 7:** Provide code that defines the recipe for feature engineering. 
 
-**Answer 17:**
+**Answer 7:**
 
 
 ```{r}
@@ -163,9 +167,9 @@ This step is only required if you are using a model and engine that has hyper-pa
 
 ### Define model type and mode
 
-**Question 18:** Provide code that defines your two models (model type + engine).
+**Question 8:** Provide code that defines your two models (model type + engine).
 
-**Answer 18:**
+**Answer 8:**
 
 Model 1:
 
@@ -183,9 +187,9 @@ Model 2:
 
 ### Define workflow
 
-**Question 19:** Provide code that defines the workflow
+**Question 9:** Provide code that defines the workflow
 
-**Answer 19:**
+**Answer 9:**
 
 Model 1:
 
@@ -205,9 +209,9 @@ Model 2:
 
 ### Estimate best hyper-parameters using tuning
 
-**Question 20:** Provide code that tunes the hyper-parameters of your model (if your model has hyper-parameters you are required tune at least one of them).  If your model+engine does not have hyper-parameters that can be tuned, then state that as your answer.
+**Question 10:** Provide code that tunes the hyper-parameters of your model (for a model that has hyper-parameters, you are required tune at least one of them).  If your model+engine does not have hyper-parameters that can be tuned, then state that as your answer.
 
-**Answer 20:**
+**Answer 10:**
 
 Model 1:
 
@@ -225,9 +229,9 @@ Model 2:
 
 ### Update workflow with best hyper-parameters
 
-**Question 21:** Provide code that updates the workflow with the best hyper-parameters. If your model+engine does not require tuning, then state that as your answer.
+**Question 11:** Provide code that updates the workflow with the best hyper-parameters. If your model+engine does not require tuning, then state that as your answer.
 
-**Answer 21:**
+**Answer 11:**
 
 Model 1:
 
@@ -243,11 +247,11 @@ Model 2:
 
 ```
 
-## Step 5: Fit to all training data
+### Fit to all training data
 
-**Question 22:** Provide code that fits your model to the training data. Use the best hyper-parameter if you tuned them.
+**Question 12:** Provide code that fits your model to the training data. Use the best hyper-parameter if you tuned them.
 
-**Answer 22:**
+**Answer 12:**
 
 Model 1: 
 
@@ -263,11 +267,31 @@ Model 2:
 
 ```
 
-## Step 6: Predict Test Data
+## Step 5: Predict Test Data
 
-**Question 23:** Provide code that predicts the test data
+**Question 13:** Provide code that predicts the test data for each model
 
-**Answer 23:**
+**Answer 13:**
+
+Model 1: 
+
+```{r}
+
+
+```
+
+Model 2: 
+
+```{r}
+
+
+```
+
+## Step 6: Evaluate models
+
+**Question 14:** Provide code that calculates the `rmse` and `r2` for the test data.  Make sure that the table with `rmse` and `r2` is shown in your rendered document.
+
+**Answer 14:**
 
 Model 1: 
 
@@ -283,21 +307,22 @@ Model 2:
 
 ```
 
-## Step 7: Evaluate model
+## Step 7: Retrain model
 
-**Question 24:** Provide code that calculates the `rmse` and `r2` for the test data.  Make sure that the table with `rmse` and `r2` is shown in your rendered document.
+**Question 15:** Select one of your two models to proceed with generating prediction that you will use to predict new NEON data and contribute to the prediction challenge.  Why did you select that model?
 
-**Answer 24:**
+**Answer 15:**
 
-Model 1: 
+**Question 16:** Provide code that retrains your selected model on the full dataset.
 
+**Answer 16:**
+
+Model 1:
 ```{r}
-
 
 ```
 
-Model 2: 
-
+Model 2:
 ```{r}
 
 
@@ -305,24 +330,24 @@ Model 2:
 
 ## Step 8: Deploy model
 
-Use your *best model* to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your CSV to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
+Use your selected model to predict new data. The new data is a data frame with all the same columns as the training and testing set above but with `NA` values for the biomass. I have the true biomass values and will calculate `rmse` for your predictions. Therefore you need to predict the biomass and upload your CSV to Canvas and I will download them as a set and run the analysis in class to examine the "scores"
 
 ```{r}
 new_data <- read_csv("data/neon_biomass_new.csv", show_col_types = FALSE) 
 ```
 
 
-**Question 25:** Provide code to predict the new data
+**Question 17:** Provide code to predict the new data
 
-**Answer 25:**
+**Answer 17:**
 
-**Question 26:** Use `write_csv(submit_predicted, file = paste0(name,"-submission.csv"))` to write your submissions to a csv.
+**Question 18:** Update the code below to write your submissions to a csv.
 
 Be sure to change the `name` to your last name.
 
 Be sure to change your model to the exact name of the model you used.  For example, we have used `rand_forest` and `linear_reg`.  Do not provide your engine.  We will use this column to understand how performance varies with modeling approach.
 
-**Answer 26:**
+**Answer 18:**
 
 ```{r}
 name <- "ADD YOUR LAST NAME HERE"
@@ -334,13 +359,13 @@ new_predicted <- bind_cols(new_data, new_predictions) |>
 write_csv(new_predicted, file = paste0(name,"-submission.csv"))
 ```
 
-**Question 27:** Find your CSV on your computer from Question 26 and upload to Canvas.
+**Question 19:** Find your CSV on your computer from Question 18 and upload to Canvas.
 
-**Answer 27:**
+**Answer 19:**
 
-## Knitting and committing
+## Render and committing
 
-Remember to Render your document as an `HTML` and comment+push to GitHub your code and rendered document.
+Remember to Render your document as an `HTML` and comment+push to GitHub your code and rendered HTML document.  Use at least three commits that you push to GitHub. 
 
 # Attribution
 

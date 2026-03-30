@@ -16,7 +16,6 @@ Machine learning is a widely used tool for predicting environmental data. This m
 
 ## Questions
 
--   What is the ice-off day of year in the future for a lake
 -   How much carbon is stored in vegetation across the U.S.
 
 ## Ojectives
@@ -28,18 +27,15 @@ Machine learning is a widely used tool for predicting environmental data. This m
 
 Experience with the tidyverse data input and wrangling
 
-Completion of two other modules on GitHub
+Completion of one other modules on GitHub
 
--   [Lake ice phenology](https://github.com/frec3044/lake-ice)
 -   [Vegetation carbon](https://github.com/frec3044/land-carbon)
 
 ## Instructions
 
--   Read and execute `tutorial/tutorial1-machine-learning-101.qmd` in Rstudio
--   Complete the notebook `assignment/assignment-part-1.qmd` in RStudio
--   `render` + commit output files to GitHub
--   Read and execute `tutorial/tutorial2-example-with-tuning.qmd` in Rstudio
--   Complete the notebook `assignment/assignment-part-2.qmd` in RStudio
+-   Read and execute `tutorials/tutorial1-machine-learning-101.qmd` in Rstudio
+-   Read and execute `tutorials/tutorial2-example-with-tuning.qmd` in Rstudio
+-   Complete the notebook `assignment/machine-learning.qmd` in RStudio
 -   `render` + commit output files to GitHub
 
 ## Context

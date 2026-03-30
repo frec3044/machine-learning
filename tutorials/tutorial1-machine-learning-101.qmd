@@ -12,14 +12,14 @@ We has address many questions in this class related to atmospheric, terrestrial,
 
 ## Step 1: Obtain data
 
-Read in data to memory.  In the course, we have accessed data from CSV files, Excel files, databases, web addresses, and behind an API. 
+Read data into memory.  In the course, we have accessed data from CSV files, Excel files, databases, web addresses, and APIs. 
 
 ## Step 2: Pre-process data
 
 ### Split data: divide data into the training and test sets. 
 
 - You will use the training set to fit (train) your model and the testing set to evaluate the model's performance.
-We only want to evaluate our model using data that was not used in its training. Otherwise, we can only say that the model is good at fitting the data that was used to train it. This is not helpful for understanding how it would perform as a tool to generate new predictions.
+We only want to evaluate our model on data not used in its training. Otherwise, we can only say that the model is good at fitting the data that was used to train it. This is not helpful for understanding how it would perform as a tool to generate new predictions.
 You want most of your data in the training set because machine learning models can be quite "hungry for data" (e.g., they need a large dataset to find a good fit).
 - A typical split is 80% training and 20% testing, but there isn't a required split. 
 - Data are randomly assigned to the two splits.
@@ -37,26 +37,26 @@ You want most of your data in the training set because machine learning models c
 
 A workflow combines the model and recipe into a single "object" that can be used for training, testing, and predicting new data.
 
-  - Define model type: linear regression, regression tree, neutral net, etc.
+  - Define model type: linear regression, regression tree, neural net, etc.
   - Define model engine: particular R package (`lm`, `ranger`, etc.)
   - Define model mode: regression or classification
   - Define workflow: combine recipe and model definition
 
 ## Step 4: Train model
 
-  - Tune hyper-parameters: hyper-parameters are configuration settings that govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameters within the model learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) could be directly provided by you or could be tuned.  The tuning process involves repeatedly fitting the model using different values of the hyper-parameter and using the hyper-parameter values that yield the best fit to the data. Importantly, not all ML methods have hyper-parameters (e.g., linear regression using the `lm` engine does not have hyper-parameters).  We don't tune hyperparameters in this example. See `example-with-tuning.Rmd` for an extension of this application that includes hyperparameter tuning.
+  - Tune hyperparameters: hyperparameters are configuration settings that govern how a particular ML method is fit to data. They are called "hyper" because "regular" parameters are the parameters within the model learned by the ML method.  For example, a method called "random forecast" requires a hyper-parameter that controls the minimum size of a regression tree that is allowed.  This parameter (called `min_n`) can be provided directly by you or tuned.  The tuning process involves repeatedly fitting the model with different hyperparameter values and selecting the values that yield the best fit to the data. Importantly, not all ML methods have hyperparameters (e.g., linear regression using the `lm` engine does not have hyperparameters).  We don't tune hyperparameters in this example. See `tutorial2-example-with-tuning.qmd` for an extension of this application that includes hyperparameter tuning.
   
   - Fit model (using best hyper-parameter if they are tuned).  The model is fit to the training data.
 
 ## Step 5: Predict
 
-  - Predict testing data using the model that was fit to the training data. This step is critical because we only want to evaluate our model using data that the model has not used yet.
+  - Predict testing data using the model that was fit to the training data. This step is critical because we want to evaluate our model only on data it has not seen before.
   - Predictions are quite easy using the `predict()` function.
   
 ## Step 6: Evaluate model
 
-  - It is important to use the appropriate metrics to evaluate how the model performs.  Some metrics only apply to classification problems, and others only apply to regression problems. A list of metric types can be found [here](https://yardstick.tidymodels.org/articles/metric-types.html)
-  We will focus on root-mean-squared error (`rmse`), a metric that subtracts each observation from the predictions, squares it, averages all the squared errors for all the data points, and then takes the square root of the mean squared error.  
+  - It is important to use the appropriate metrics to evaluate how the model performs.  Some metrics apply only to classification problems, and others apply only to regression problems. A list of metric types can be found [here](https://yardstick.tidymodels.org/articles/metric-types.html)
+  We will focus on root-mean-squared error (`rmse`), a metric that subtracts each observation from the predictions, squares the differences, averages them across all data points, and then takes the square root.  
   - R-squared (`rsq`) is another metric that we used in the lake ice module.
   
 ## Step 7: Deploy model
@@ -66,7 +66,7 @@ A workflow combines the model and recipe into a single "object" that can be used
   
 # Application: Predicting biomass in NEON data
 
-In the example application, we will use the vegetation carbon stock data that was used in the carbon stock model. Our goal is to predict the mean carbon stock of each plot in the NEON data. This will allow us to build a model that could be used to predict carbon stocks at locations other than NEON and potentially provide a prediction tool for land managers.
+In the example application, we will use the vegetation carbon stock data that was used in the carbon stock model. Our goal is to predict the mean carbon stock of each plot in the NEON data. This will allow us to build a model that can predict carbon stocks at locations beyond NEON and potentially serve as a predictive tool for land managers.
 
 You will use the following packages.
 
@@ -79,7 +79,7 @@ set.seed(100) #for random number generation
 
 ## Step 1: Obtain data
 
-The data are from the National Ecological Observatory Network, the DayMet project (meteorology data), and NASA's MODIS satellite.  They have been combined to provide the woody vegetation carbon stocks for each NEON plot and the associated meteorology, land-use classification, and normalized vegetation index (from MODIS).
+The data are from the National Ecological Observatory Network, the DayMet project (meteorology data), and NASA's MODIS satellite.  They have been combined to provide woody-vegetation carbon stocks for each NEON plot, along with associated meteorology, land-use classification, and the normalized vegetation index (from MODIS).
 
 ```{r}
 biomass_data <- read_csv("../assignment/data/neon_biomass.csv", show_col_types = FALSE)
@@ -96,7 +96,7 @@ biomass_data <- biomass_data |>
 
 ### Split data into training/testing sets 
 
-We are going to split the data into training and testing sets using the `initial_split` function.  `prop = 0.80` says to use 80% of the data in the training set. Since we want the training and test sets to represent all the types of `nlcdClass`, we include it as a `strata`.
+We are going to split the data into training and testing sets using the `initial_split` function. `prop = 0.80` indicates that 80% of the data will be used for training``. Since we want the training and test sets to represent all `nlcdClass` types``, we include it as a `strata`.
 
 
 
@@ -108,7 +108,7 @@ split <- initial_split(biomass_data,
 
 **Important note: you will not always use a strata (this has confused students in the past).** If your data does not have groupings (e.g., categorical variables) that you want to have evenly distributed in the training and testing set, you do not need to use a strata.  This case you would have `split <- initial_split(biomass_data, prop = 0.80)`)
 
-Our split should reflect the 80/20 that we defined using `prop`
+Our split should reflect the 80/20 that we defined using `prop.`
 
 ```{r}
 split
@@ -161,9 +161,9 @@ biomass_recipe
 
 ## Step 3: Specify model, engine, and workflow
 
-We need to create the model and engine that we will use. In this example, we are using `linear_reg` with the mode of `regression` (as opposed to `classification`). Setting the mode for linear regression is actually not necessary because it only allows regressions, but it is included here for completeness. 
+We need to create the model and engine that we will use. In this example, we are using `linear_reg` in `regression` mode (as opposed to `classification` mode). Setting the mode to linear regression is not necessary, as it only allows linear regression, but it is included here for completeness. 
 
-The engine is `lm` because we are using the standard R function `lm`.  We could other functions for linear regression modeling, and they would be specified as a different engine.
+The engine is `lm` because we are using the standard R function `lm`.  We could use other functions for linear regression modeling, and they would be specified as a different engine.
 
 ```{r}
 linear_mod <- 
@@ -209,7 +209,7 @@ biomass_fit
 
 ## Step 5: Predict Test Data
 
-Now we will predict the testing data using the model that was fit to the training data.
+Now we will predict the test data using the model fitted to the training data.
 
 ```{r}
 predictions <- predict(biomass_fit, 
@@ -228,7 +228,7 @@ We need to combine the `.pred` column with the testing data using the `bind_cols
 pred_test <- bind_cols(test_data, predictions)
 ```
 
-Now we have a data frame with the prediction and all the predictors used to predict it and other identifying info (like `plotID`)
+Now we have a data frame with the prediction and all the predictors used to predict it, and other identifying info (like `plotID`)
 
 ```{r}
 pred_test
@@ -252,11 +252,20 @@ The resulting table has the metrics for evaluation
 metric_table
 ```
 
-## Step 7: Deploy model
+## Step 7: Train model on full dataset
+
+Use the full data set to train your model.
+
+```{r}
+biomass_full_fit <- biomass_wflow |> 
+  fit(data = biomass_data)
+```
+
+## Step 8: Deploy model
 
 The final step is to apply your model to predict new data. 
 
-Now read in the new data.  
+Now read the new data.  
 
 ```{r}
 new_data <- read_csv("../assignment/data/neon_biomass_new.csv", show_col_types = FALSE)
@@ -271,10 +280,10 @@ You will notice that the plot_kgCm2 is all `NA` because you don't know the plot'
 new_data
 ```
 
-As in "Step 5: Predict Test Data", use the model that was fit on the training data (`biomass_fit`) to predict the new data.
+As in "Step 5: Predict Test Data", use the model fitted on the training data (`biomass_fit`) to predict the new data.
 
 ```{r}
-new_predictions <- predict(biomass_fit, new_data = new_data)
+new_predictions <- predict(biomass_full_fit, new_data = new_data)
 ```
 
 Now create a data frame with the new data, predictions, model type, and your name. 
@@ -297,11 +306,7 @@ write_csv(new_predicted, file = "predictions.csv")
 
 # Assignment
 
-Your assignment is divided into two Quarto markdown document files that use data that you have already seen in the previous modules.
-
-1) `assignment/assignment-part-1.qmd` challenges you to translate the linear regression that you did in the lake ice module following the tidymodel machine learning format presented in this Rmd
-
-2) `assignment/assignment-part-2.qmd` challenges you to develop your own machine learning model to predict the carbon stock data from the forest carbon module.
+Your assignment is `assignment/assignment.qmd`, which challenges you to develop your own machine learning models to predict the carbon stock data from the forest carbon module.  You will be selected the best of the models that you developed and submit your predictions to the class prediction challenge.
 
 
 

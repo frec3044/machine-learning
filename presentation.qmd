@@ -41,7 +41,9 @@ fit <- lm(doy ~ year, data = sunapee)
 ::: {.column width="50%"}
 ### Supervised
 
--   *Labels* are available for each set of predictors (class or continuous numeric)
+-   *Labels* are available for each set of predictors
+
+-   *Labels* can be classes (e.g., cat or dog) or numbers (e.g., 3.7)
 
 -   Goal is to predict the *labels*
 :::
@@ -85,41 +87,45 @@ https://www.researchgate.net/publication/347633181_Detection_of_Smoking_in_Indoo
 
 ## Big picture steps in ML
 
-1.  Define the question (what are you predicting...is it ethical?)
-2.  Obtain data
-3.  Define the type of ML (supervised vs. unsupervised, regression vs. classification).
-4.  Identify the method that will be used (this influences how data will be pre-processed)
-5.  Pre-process data (also called feature engineering)
-6.  Define a specific approach for applying the model (i.e., which R package)
+0. Define the question (what are you predicting...is it ethical?)
+
+1.  Obtain data
+2.  Pre-process data (also called feature engineering)
+    -  Define data splits (training vs. testing - often 80%/20% split)
+3.  Define the model and workflow
+    -  Type of ML model (supervised vs. unsupervised, regression vs. classification).
+    -  Identify the method that will be used (this influences how data will be pre-processed)
+    -  Define a specific approach for applying the model (i.e., which R package)
 
 ## Big picture steps in ML
 
-7.  Define data splits (training vs. testing - often 80%/20% split)
-8.  Fit (train) model to [training]{.underline} data
-9.  Evaluate (validate) the model with [testing]{.underline} data (need to evaluate with testing data because ML learns the training data)
-
-## Big picture steps in ML
-
-10. Deploy model (predict new data).
+4.  Fit (train) model to [training]{.underline} data
+5.  Predict the testing data
+6.  Evaluate (validate) the model with [testing]{.underline} data (need to evaluate with testing data because ML learns the training data)
+7.  Train model on all data
+8.  Deploy model (predict new data).
 
 ## Lake Ice module as ML
 
-1.  Define question: **what is the lake ice in 2030?**
-2.  Obtain data: **read_excel**
-3.  Define the type of ML: **supervised regression**
-4.  Identify the method that will be used: **linear regression**
-5.  Pre-process data: **I already converted the date to DOY**
-6.  Define a specific approach for applying the model: `lm`
+0.  Define question: **what is the lake ice in 2040?**
+1.  Obtain data: **read_excel**
+2.  Pre-process data: **I already converted the date to DOY**
+    -  Define data splits: **we didn't do this**
+3.  Define the model and workflow
+    -  Define the type of ML: **supervised regression**
+    -  Identify the method that will be used: **linear regression**
+    -  Define a specific approach for applying the model: `lm`
 
 ## Lake Ice module as ML
 
-7.  Define data splits: **we didn't do this**
-8.  Fit (train) model to training data: `lm(doy ~ year, data = sunapee)`
-9.  Evaluate (validate) the model with testing data: **we didn't do this**
+4.  Fit (train) model to training data: `lm(doy ~ year, data = sunapee)`
+5.  Predict the testing set: **we didn't do this**
+6.  Evaluate (validate) the model with testing data: **we didn't do this**
 
 ## Lake Ice module as ML
 
-10. Deploy model (predict new data): **predicted for the year 2030**
+7. Train model on all data.  **we did this**
+8. Deploy model (predict new data): **predicted for the year 2040**
 
 ## Tidyverse take on ML
 
@@ -151,19 +157,16 @@ https://www.tidymodels.org
 https://rpubs.com/chenx/tidymodels_tutorial
 :::
 
-## Overview of module
-
-### Datasets
+## Overview of module: Dataset
 
 -   Forest carbon from NEON (from prior module)
--   Lake Ice (from prior module)
 
-### Plan
+## Overview of module: Plan
 
--   Instruction in tidymodels applied to predicting carbon
--   Assignment part 1: apply to predicting lake ice
--   Instruction in tuning ML models
--   Assignment part 2: apply to predictingforest carbon
+-   Tuesday: Instruction in tidymodels applied to predicting carbon
+-   Thursday: In-class assignment apply to predicting lake ice
+-   Tuesday: Instruction in using different models and tuning using ML models
+-   Thursday: Quiz and instruction in applying models to classification.
 
 ## Focal dataset
 
@@ -189,4 +192,11 @@ nrow(biomass)
 -   You have the "predictors" for 57 additional sites
 -   I have the carbon stocks
 -   You will submit your predictions of these 57 via Canvas
--   I will summarize and compare the results.
+-   We will summarize and compare the results.
+
+## Success in the module
+
+-  Before Thursday: study and review tutorial1-machine-learning-101.qmd
+-  Complete In-class assignment on Thursday using knowledge from the tutorial
+-  After next Tuesday, review tutorial2-example-with-tuning.qmd
+-  Use knowledge from tutorial1 and tutorial2 to complete the assignment.

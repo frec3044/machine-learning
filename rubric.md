@@ -2,109 +2,7 @@
 
 ### Module weight: X pts
 
-## Part 1
-
 Question 1: 
-
--   Full Credit: Code uses tidyverse function to read and filter data.
-
--   Partial Credit: Code does not correctly read and/or filter data or code does not use tidyverse functions
-
--   No Credit: No code submitted
-
-Question 2:
-
--   Full Credit: Code uses tidymodel function split data
-
--   Partial Credit: Code does not correctly split data OR code does not use tidymodel functions
-
--   No Credit: No code submitted
-
-Question 3:
-
--   Full Credit: Code uses tidymodel function to correctly define a recipe with the correct features
-
--   Partial Credit: Code does not correctly define a recipe with the correct features OR code does not use tidymodel functions
-
--   No Credit: No code submitted
-
-Question 4:
-
--   Full Credit: Code uses tidymodel function to correctly define the linear regression model
-
--   Partial Credit: Code does not correctly define the linear regression model OR code does not use tidymodel functions
-
--   No Credit: No code submitted
-
-Question 5:
-
--   Full Credit: Code uses tidymodel function to correctly define the workflow
-
--   Partial Credit: Code does not correctly define the workflow OR code does not use tidymodel functions
-
--   No Credit: No code submitted
-
-Question 6:
-
--   Full Credit: Code uses tidymodel function to correctly trains the model
-
--   Partial Credit: Code does not correctly train the model OR code does not use tidymodel functions
-
--   No Credit: No code submitted
-
-Question 7:
-
--   Full Credit: Code uses correctly predicts the test data using the trained model.  Predictions are correctly binded with the predictors.  Answer uses tidyverse or tidymodel functions when able
-
--   Partial Credit: Code does not correctly generate predictions that are binded with the predictors  OR code does not use tidymodel/tidyverse functions
-
--   No Credit: No code submitted
-
-Question 8:
-
--   Full Credit: Correct R2 and RMSE are displayed in a table.  Code uses tidymodel functions to calculate R2 and RMSE
-
--   Partial Credit: Code does not correctly calculate R2 and RMSE OR no table is displayed OR code does not use tidymodel functions OR more metrics than R2 and RMSE are shown.
-
--   No Credit: No code submitted
-
-Question 9:
-
--   Full Credit: Code correctly uses trained model to predict ice-off DOY from the new_data data frame.
-
--   Partial Credit: Code does not correctly use the trained model to predict ice-off DOY from the new_data data frame OR code does not use tidymodel functions
-
--   No Credit: No code submitted
-
-Question 10:
-
--   Full Credit: Plot is generated using ggplot with year on x-axis and DOY on y-axis.  The appropriate geom is used.  Clear axis labels and titles are used.
-
--   Partial Credit: Minor errors in the plot. Plot is provided but one of the required elements missing or incorrect (colors, axes, labels, title, labels)
-
--   Partial Credit: Major errors in the plot. Plot is provided but multiple of the required elements missing or incorrect (colors, axes, labels, title, labels).
-
--   No Credit: No code submitted
-
-Quarto
-
--   Full Credit: HTML looks clean and nicely formatted. Plots displaying properly.
-
--   Partial Credit: HTML has extreme errors or formatting issues that should have been caught by a cursory review before submission
-
--   No Credit: No HTML submitted
-
-GitHub
-
--   Full Credit: assignment found on the course GitHub, multiple commits provided, and HTML committed
-
--   Partial Credit: Assignment found on course GitHub, but only a single commit was provided (no evidence that the student saved and committed progress) or missing HTML on GitHub.
-
--   No Credit: Assignment not found on the course GitHub organization OR no commits on GitHub found.
-
-## Part 2
-
-Question 11: 
 
 -   Full Credit: Correctly provide a model and an engine
 
@@ -112,7 +10,7 @@ Question 11:
 
 -   No Credit: No answer provided or it is clear from answer that the concept of a model and engine is not understood.
 
-Question 12:
+Question 2:
 
 -   Full Credit: Clear answer that is not merely rephrasing help from the package
 
@@ -120,7 +18,7 @@ Question 12:
 
 -   No Credit: No answer provided
 
-Question 13:
+Question 3:
 
 -   Full Credit:Correctly identifies whether the model requires data pre-processing and includes the steps
 
@@ -128,7 +26,7 @@ Question 13:
 
 -   No Credit: No answer provided
 
-Question 14:
+Question 4:
 
 -   Full Credit: Correct list of hyperparameters for the model in Question 11
 
@@ -136,7 +34,7 @@ Question 14:
 
 -   No Credit: No answer provided
 
-Question 15:
+Question 5:
 
 -   Full Credit: Code uses tidymodel function split data
 
@@ -144,7 +42,7 @@ Question 15:
 
 -   No Credit: No code submitted
 
-Question 16:
+Question 6:
 
 -   Full Credit: Code uses tidymodel functions to split into folds OR correctly states that hyperparameter tuning is not required
 
@@ -152,7 +50,7 @@ Question 16:
 
 -   No Credit: No code submitted
 
-Question 17:
+Question 7:
 
 -   Full Credit: Code uses tidymodel function to correctly define a recipe with the correct features
 
@@ -160,7 +58,7 @@ Question 17:
 
 -   No Credit: No code submitted
 
-Question 18:
+Question 8:
 
 -   Full Credit: Code uses tidymodel function to correctly define the model
 
@@ -168,7 +66,7 @@ Question 18:
 
 -   No Credit: No code submitted
 
-Question 19:
+Question 9:
 
 -   Full Credit: Code uses tidymodel function to correctly define the workflow
 
@@ -176,7 +74,7 @@ Question 19:
 
 -   No Credit: No code submitted
 
-Question 20:
+Question 10:
 
 -   Full Credit: Code uses tidymodel function to correctly tune the hyperparameters OR correctly states that model does not require hyperparameter tuning
 
@@ -184,7 +82,7 @@ Question 20:
 
 -   No Credit: No code submitted
 
-Question 21:
+Question 11:
 
 -   Full Credit: Code uses tidymodel function to correctly update model with tuned parameters OR correctly states that model does not require hyperparameter tuning
 
@@ -192,7 +90,7 @@ Question 21:
 
 -   No Credit: No code submitted
 
-Question 22:
+Question 12:
 
 -   Full Credit: Code uses tidymodel function to correctly trains the model
 
@@ -200,7 +98,7 @@ Question 22:
 
 -   No Credit: No code submitted
 
-Question 23:
+Question 13:
 
 -   Full Credit: Code uses correctly predicts the test data using the trained model.  Predictions are correctly binded with the predictors.  Answer uses tidyverse or tidymodel functions when able
 
@@ -208,7 +106,7 @@ Question 23:
 
 -   No Credit: No code submitted
 
-Question 24:
+Question 14:
 
 -   Full Credit: Correct R2 and RMSE are displayed in a table.  Code uses tidymodel functions to calculate R2 and RMSE
 
@@ -216,7 +114,23 @@ Question 24:
 
 -   No Credit: No code submitted
 
-Question 25:
+Question 15: 
+
+-   Full Credit: Evidence-based justification for selecting the model.
+
+-   Partial Credit: Model selected but justification is not supported by robust evidence.
+
+-   No Credit: No answer provided
+
+Question 16:
+
+-   Full Credit: Code provided that retrains model using correct data
+
+-   Partial Credit: Code provided to train but incorrect data used
+
+-   No Credit: Incorrectly retrains model or no code provided
+
+Question 17:
 
 -   Full Credit: Correctly predicts new data from trained model using tidymodel functions
 
@@ -224,11 +138,11 @@ Question 25:
 
 -   No Credit: No code submitted
 
-Question 26:
+Question 18:
 
--   Full Credit: Correctly writes predictions from Question 25 to a CSV
+-   Full Credit: Correctly writes predictions from Question 17 to a CSV
 
--   No Credit: Code does correctly write predictions from Question 25 to a CSV OR no code submitted
+-   No Credit: Code does correctly write predictions from Question 17 to a CSV OR no code submitted
 
 Quarto
 
@@ -240,15 +154,15 @@ Quarto
 
 GitHub
 
--   Full Credit: assignment found on the course GitHub, multiple commits provided, and HTML committed
+-   Full Credit: assignment found on the course GitHub, >2 commits provided, and HTML committed
 
--   Partial Credit: Assignment found on course GitHub, but only a single commit was provided (no evidence that the student saved and committed progress) or missing HTML on GitHub.
+-   Partial Credit: Assignment found on the course GitHub, but two commits were provided (no evidence that the student saved and committed progress) or missing HTML on GitHub.
 
--   No Credit: Assignment not found on the course GitHub organization OR no commits on GitHub found.
+-   No Credit: Assignment not found on the course GitHub organization, or no commits by student found on GitHub.
 
-## Part 3
+## Part 2
 
-Question 27: 
+Question 19: 
 
 -   Full Credit: CSV file upload to Canvas with the correct columns
 
